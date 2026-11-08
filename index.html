@@ -133,16 +133,6 @@
     th, td { padding: 10px 12px; border: 1px solid #334155; text-align: left; font-size: 13px; }
     th { background: #0f172a; color: #38bdf8; }
     td { background: #1e293b; }
-
-    /* Highlight box */
-    .tip-box {
-      background: #172554;
-      border: 1px solid #1d4ed8;
-      border-radius: 8px;
-      padding: 12px 16px;
-      margin-bottom: 15px;
-      font-size: 13px;
-    }
   </style>
 </head>
 <body>
@@ -152,7 +142,8 @@
     <div class="hero-tags">
       <span class="tag">🌊 跨海單人探索</span>
       <span class="tag tag-amber">🍺 每天喝酒 ＆ 蛋白質不間斷</span>
-      <span class="tag">🍚 每日一碗不重複湯飯</span>
+      <span class="tag">🍢 福岡名物脆烤雞皮居酒屋</span>
+      <span class="tag" style="background: #e11d48; color: #fff; border: none;">🎰 柏青哥小鋼珠體驗</span>
     </div>
     <h1>釜山 ➔ 福岡 跨年單人深度探索手冊</h1>
     <p>2026/12/29 (二) – 2027/01/03 (日) ｜ 6 天 5 夜一站式行程網站</p>
@@ -161,8 +152,9 @@
   <!-- Navigation Bar -->
   <nav class="nav-bar">
     <button class="nav-btn active" onclick="switchTab('itinerary')">📅 6日詳細行程</button>
-    <button class="nav-btn" onclick="switchTab('tickets')">🎫 車票船票・乘車指南</button>
+    <button class="nav-btn" onclick="switchTab('tickets')">🎫 車票船票・特別列車</button>
     <button class="nav-btn" onclick="switchTab('shopping')">🛍️ 購物專線 (On/單車/高球)</button>
+    <button class="nav-btn" onclick="switchTab('pachinko')">🎰 小鋼珠體驗指南</button>
     <button class="nav-btn" onclick="switchTab('nightview')">🌃 雙城絕美夜景</button>
   </nav>
 
@@ -232,7 +224,7 @@
           <div class="sub-card">
             <h4>20:30 晚餐配酒</h4>
             <div class="name"><a href="https://www.60chicken.com/" target="_blank">60雞 (60계치킨) 草梁店</a></div>
-            <p>外帶招牌 CCC 蒜香微辣炸雞（建議選翅腿拼盤），回房間配燒酒享受一人盛宴。</p>
+            <p>外帶招牌 CCC 蒜香微辣炸雞（建議選翅腿部位拼盤 봉/윙 combo），回房間配燒酒啤酒痛快享受一人盛宴！</p>
           </div>
         </div>
       </div>
@@ -268,18 +260,20 @@
         </div>
       </div>
 
-      <!-- Day 4 -->
+      <!-- Day 4 (Featuring Jeongjitgan Michelin Bib Gourmand) -->
       <div class="day-card">
         <div class="day-header">
-          <div class="day-title">01/01 (五) Day 4：草梁濃白湯飯 ➔ 新山茶花號夜宿出海</div>
-          <div class="day-badge" style="background: #8b5cf6;">夜宿輪船出海</div>
+          <div class="day-title">01/01 (五) Day 4：米其林正饔間 ➔ 新山茶花號夜宿出海</div>
+          <div class="day-badge" style="background: #e11d48;">米其林必比登</div>
         </div>
-        <p style="font-size: 13px; color: #94a3b8; margin-bottom: 12px;">重點：大建名家豬肉湯飯、新山茶花號國際航線（展望大浴場與海景啤酒）</p>
+        <p style="font-size: 13px; color: #94a3b8; margin-bottom: 12px;">重點：必吃正饔間松阪豬肉湯飯、新山茶花號國際航線（展望大浴場與海景啤酒）</p>
         <div class="grid grid-3">
           <div class="sub-card">
-            <h4>11:30 今日第 3 碗湯飯</h4>
-            <div class="name"><a href="https://map.naver.com/" target="_blank">大建名家豬肉湯飯 (대건명가)</a></div>
-            <p>草梁名店，38 小時精燉純白如拉麵般濃郁湯頭，招牌水煮白肉切盤入口即化，一人用餐非常舒適。</p>
+            <h4>11:30 今日第 3 碗湯飯 (必吃！)</h4>
+            <div class="name"><a href="https://guide.michelin.com/kr/ko/busan-region/busan_1025838/restaurant/jeongjitgan" target="_blank">정짓간 (正饔間 釜山站店)</a></div>
+            <p style="color: #fb7185; font-weight: bold;">★ 米其林必比登推薦 ｜ 2F設有一人吧台座</p>
+            <p><strong>地址</strong>：부산 동구 중앙대로209번길 11（舊百濟醫院旁，東橫INN步行3分鐘）。<br>
+            <strong>推薦</strong>：招牌「義城大蒜豬肉湯飯 (의성마늘국밥)」或「松阪豬白肉套餐 (항정살 수육백반)」，湯頭濃郁無腥味，平板點餐超自在！</p>
           </div>
           <div class="sub-card">
             <h4>14:00 下午放空 (可切換)</h4>
@@ -303,33 +297,57 @@
         </div>
       </div>
 
-      <!-- Day 5 -->
+      <!-- Day 5 (Featuring Fukuoka Grilled Chicken Skin Izakaya & Pachinko) -->
       <div class="day-card">
         <div class="day-header">
-          <div class="day-title">01/02 (六) Day 5：抵達福岡 ➔ 裝備大採購 ➔ 皿倉山百億夜景 ➔ 中洲宵夜</div>
-          <div class="day-badge" style="background: #f43f5e;">福岡暴走採購</div>
+          <div class="day-title">01/02 (六) Day 5：抵達福岡 ➔ 裝備採購 / 觀光列車 ➔ 皿倉山夜景 ➔ 名物烤雞皮晚酌・小鋼珠</div>
+          <div class="day-badge" style="background: #f43f5e;">福岡居酒屋烤雞皮</div>
         </div>
-        <p style="font-size: 13px; color: #94a3b8; margin-bottom: 12px;">重點：On 跑鞋 / 單車部品 / 高爾夫 / 北九州皿倉山軌道纜車 / 中洲一蘭總店</p>
+        <p style="font-size: 13px; color: #94a3b8; margin-bottom: 12px;">重點：On 跑鞋 / 特別美食觀光列車 / 北九州皿倉山軌道纜車 / 福岡名物脆烤雞皮配生啤酒 / 柏青哥初體驗</p>
         <div class="grid grid-4">
           <div class="sub-card">
             <h4>09:30 On 跑鞋採購</h4>
             <div class="name"><a href="https://www.yodobashi.com/ec/store/0088/" target="_blank">石井運動 (Yodobashi 博多 2F)</a></div>
             <p>博多站筑紫口旁，擁有一整面 On 專屬展示牆，尺寸款式最齊全。4F 還有 Lopia 超市。</p>
           </div>
+
+          <!-- Day 5 Lunch Swap: Convenience Store vs The Rail Kitchen Chikugo -->
           <div class="sub-card">
-            <h4>12:00 高蛋白快速補給</h4>
-            <div class="name">日本超商起司漢堡排</div>
-            <p>超商冷藏「鉄板焼ハンバーグ チーズインデミグラス」，搭 SAVAS 高蛋白牛奶，10 分鐘完成補給。</p>
+            <h4>12:00 午餐饗宴 (可切換)</h4>
+            <div id="d5-lunch-1">
+              <div class="name">日本超商爆漿起司漢堡排</div>
+              <p style="color: #38bdf8; font-weight: bold;">★ 超快高蛋白極速補給</p>
+              <p>超商冷藏「鉄板焼ハンバーグ チーズインデミグラス」，搭 SAVAS 高蛋白牛奶，10 分鐘完成補給。</p>
+            </div>
+            <div id="d5-lunch-2" style="display: none;">
+              <div class="name"><a href="https://www.railkitchen.jp/zh/" target="_blank">THE RAIL KITCHEN CHIKUGO</a></div>
+              <p style="color: #f59e0b; font-weight: bold;">★ 西鐵移動美食觀光列車</p>
+              <p>週六 Early Lunch（福岡天神出發往返，含乘車＋現烤窯烤季節料理，13,000 日圓）。一邊看窗景一邊品嚐筑後產地美味！</p>
+            </div>
+            <button class="swap-btn" onclick="toggleOption('d5-lunch')">⇄ 點擊切換觀光列車/超商</button>
           </div>
+
           <div class="sub-card">
             <h4>13:30 單車 ＆ 高球專賣</h4>
             <div class="name"><a href="https://luzfukuokatenjin.com/shop/ys-road" target="_blank">Y's Road</a> ＆ <a href="https://store.alpen-group.jp/alpenfukuoka/CSfStoreTop.jsp" target="_blank">GOLF5</a></div>
             <p>天神 Y's Road 買車衣配件，運河城 GOLF5 選購球具，並至 <a href="https://www.crossroadfukuoka.jp/spot/10777" target="_blank">櫛田神社</a> 求五合一開運御守。</p>
           </div>
+
+          <!-- Day 5 Dinner: Chicken Skin Izakaya (Kawaya or Shin-Jidai) -->
           <div class="sub-card">
-            <h4>17:00 皿倉山 ➔ 中洲宵夜</h4>
-            <div class="name"><a href="https://ichiran.com/shop/kyushu/sohonten/" target="_blank">一蘭拉麵 本社總本店 (中洲)</a></div>
-            <p>傍晚搭 JR 音速號衝皿倉山看百億夜景。晚上返回福岡直奔中洲一蘭總店（味集中一人座），餐後漫步中洲河畔街區欣賞迷人夜色。</p>
+            <h4>19:30 晚餐烤雞皮 (可切換)</h4>
+            <div id="d5-dinner-1">
+              <div class="name"><a href="https://hakatakawaya.com/shoplist/shop/913/" target="_blank">博多かわ屋 (祇園店 / 白金本店)</a></div>
+              <p style="color: #fb7185; font-weight: bold;">★ 福岡元祖 Q 彈螺旋烤雞皮</p>
+              <p>反覆烘烤浸醬 6 天的極致工法！一人直接點 5~10 支起跳，外酥內 Q 彈，搭配生啤酒是福岡男人的靈魂！</p>
+            </div>
+            <div id="d5-dinner-2" style="display: none;">
+              <div class="name"><a href="https://shinjidaihakataekimaeten.owst.jp/" target="_blank">新時代 (博多站前店 / 天神店)</a></div>
+              <p style="color: #fbbf24; font-weight: bold;">★ 酥脆金字塔「傳串」</p>
+              <p>一支才 50 日圓！酥脆到像餅乾般的高人氣名物，疊成金字塔點 6 支以上，高 CP 值配生啤超痛快！</p>
+            </div>
+            <button class="swap-btn" onclick="toggleOption('d5-dinner')">⇄ 點擊切換かわ屋 / 新時代</button>
+            <p style="font-size: 11px; color: #94a3b8; margin-top: 6px;">吃完漫步中洲河畔夜色，順路至筑紫口體驗小鋼珠！</p>
           </div>
         </div>
       </div>
@@ -362,10 +380,10 @@
 
     </div>
 
-    <!-- PANEL 2: TICKETS -->
+    <!-- PANEL 2: TICKETS & TRAINS -->
     <div id="tickets" class="panel">
       <div class="day-card">
-        <div class="day-title" style="margin-bottom: 15px;">🎫 車票船票購買與乘車路線快速入口</div>
+        <div class="day-title" style="margin-bottom: 15px;">🎫 車票船票購買・特別觀光列車乘車指南</div>
         <table>
           <thead>
             <tr>
@@ -376,6 +394,12 @@
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td><strong>西鐵美食觀光列車<br>THE RAIL KITCHEN CHIKUGO</strong></td>
+              <td>西鐵福岡(天神) 往返 或 太宰府/大牟田</td>
+              <td><a href="https://www.railkitchen.jp/zh/travelplan/" target="_blank">西鐵官方線上預約</a><br>(成人 13,000 日圓含乘車+季節餐點)</td>
+              <td><strong>行駛時間</strong>：週四（往返午餐）、週五（經太宰府到大牟田）、<strong>六日/假日（福岡往返 Early Lunch 9:21出發 或 Late Lunch 12:51出發）</strong>。車內設有大烤爐烹製現做筑後在地美食！</td>
+            </tr>
             <tr>
               <td><strong>新山茶花號客輪</strong></td>
               <td>釜山港 ➔ 博多港</td>
@@ -440,7 +464,26 @@
       </div>
     </div>
 
-    <!-- PANEL 4: NIGHTVIEW -->
+    <!-- PANEL 4: PACHINKO -->
+    <div id="pachinko" class="panel">
+      <div class="day-card">
+        <div class="day-title" style="margin-bottom: 15px;">🎰 福岡小鋼珠 (パチンコ Pachinko) 新手體驗秘笈</div>
+        <div class="grid grid-2">
+          <div class="sub-card">
+            <div class="name" style="color: #38bdf8;">精選店家推薦 (交通極度便利)</div>
+            <p><strong>1. プラザ博多 (Plaza 博多)</strong>：博多站筑紫口步行 30 秒（Clio Court 飯店旁），超過 1,000 台規模，設有禁煙與加熱菸專區，新手友善！</p>
+            <p style="margin-top: 6px;"><strong>2. 123博多店 / 玉屋本店</strong>：鄰近中洲與住吉，逛完中洲夜市或吃完烤雞皮可順路體驗。</p>
+          </div>
+          <div class="sub-card">
+            <div class="name" style="color: #fbbf24;">新手入門 3 大避雷法則</div>
+            <p><strong>★ 找「1円パチンコ (1圓台)」</strong>：機台面板會標註「1玉1円」或「1玉4円」。新手請認明「1円台」，1,000 日圓可換 1,000 顆鋼珠，能輕鬆玩很久體驗動畫樂趣（如鋼彈、EVA 等熱門動漫機台）。</p>
+            <p style="margin-top: 6px;"><strong>★ 怎麼開始</strong>：把千圓鈔票塞入機台右上角的插槽，按下「玉貸」按鈕，鋼珠就會自動流出到托盤，右手轉動右下方的旋鈕控制彈力即可開始！</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 5: NIGHTVIEW -->
     <div id="nightview" class="panel">
       <div class="day-card">
         <div class="day-title" style="margin-bottom: 15px;">🌃 雙城登高絕美夜景（避雷與無痛指南）</div>
@@ -485,6 +528,26 @@
       } else if (groupId === 'd4-afternoon') {
         const o1 = document.getElementById('d4-afternoon-1');
         const o2 = document.getElementById('d4-afternoon-2');
+        if (o1.style.display === 'none') {
+          o1.style.display = 'block';
+          o2.style.display = 'none';
+        } else {
+          o1.style.display = 'none';
+          o2.style.display = 'block';
+        }
+      } else if (groupId === 'd5-lunch') {
+        const o1 = document.getElementById('d5-lunch-1');
+        const o2 = document.getElementById('d5-lunch-2');
+        if (o1.style.display === 'none') {
+          o1.style.display = 'block';
+          o2.style.display = 'none';
+        } else {
+          o1.style.display = 'none';
+          o2.style.display = 'block';
+        }
+      } else if (groupId === 'd5-dinner') {
+        const o1 = document.getElementById('d5-dinner-1');
+        const o2 = document.getElementById('d5-dinner-2');
         if (o1.style.display === 'none') {
           o1.style.display = 'block';
           o2.style.display = 'none';
