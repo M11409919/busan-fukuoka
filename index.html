@@ -1,562 +1,629 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>釜山・福岡跨年單人深度探索手冊</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background-color: #0b1329;
-      color: #f1f5f9;
-      line-height: 1.6;
-      padding-bottom: 60px;
-    }
-    a { color: #38bdf8; text-decoration: underline; }
-    a:hover { color: #7dd3fc; }
-    
-    /* Hero Header */
-    .hero {
-      background: linear-gradient(180deg, #0284c7 0%, #0369a1 40%, #075985 70%, #0b1329 100%);
-      padding: 40px 20px 30px;
-      text-align: center;
-      border-bottom: 2px solid #0284c7;
-    }
-    .hero h1 { font-size: 26px; font-weight: 900; color: #ffffff; margin-bottom: 10px; }
-    .hero p { font-size: 14px; color: #e0f2fe; margin-bottom: 15px; }
-    .hero-tags { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
-    .tag {
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-    }
-    .tag-amber { background: #f59e0b; color: #000; border: none; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>釜山・福岡跨年單人深度探索手冊</title>
+<style>
+  :root{
+    --bg:#0a0f1c; --bg2:#0f1626; --card:#151e33; --card2:#1b2742;
+    --line:#26324e; --line2:#334264;
+    --txt:#eef2f9; --txt2:#aab6cd; --txt3:#7d8aa5;
+    --cyan:#38bdf8; --emerald:#34d399; --amber:#fbbf24; --rose:#fb7185; --violet:#a78bfa;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-text-size-adjust:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",Roboto,sans-serif;
+    background:var(--bg); color:var(--txt); line-height:1.65; font-size:15px;
+    padding-bottom:80px; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--cyan);text-decoration:none;border-bottom:1px dotted rgba(56,189,248,.5)}
+  a:hover{color:#7dd3fc}
+  .wrap{max-width:980px;margin:0 auto;padding:0 16px}
 
-    /* Nav Tabs */
-    .nav-bar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: #0f172a;
-      border-bottom: 1px solid #1e293b;
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px 15px;
-      overflow-x: auto;
-    }
-    .nav-btn {
-      background: #1e293b;
-      color: #cbd5e1;
-      border: 1px solid #334155;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .nav-btn.active {
-      background: #0284c7;
-      color: #ffffff;
-      border-color: #38bdf8;
-    }
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(1000px 420px at 15% -10%, rgba(56,189,248,.28), transparent 60%),
+      radial-gradient(800px 420px at 90% 0%, rgba(167,139,250,.22), transparent 60%),
+      linear-gradient(180deg,#0d2238 0%, var(--bg) 100%);
+    padding:38px 16px 26px; text-align:center; border-bottom:1px solid var(--line);
+  }
+  .hero .kicker{font-size:12px;letter-spacing:.22em;color:var(--cyan);font-weight:700;margin-bottom:12px}
+  .hero h1{font-size:clamp(23px,5.4vw,36px);font-weight:900;letter-spacing:-.02em;line-height:1.25}
+  .hero h1 .arrow{color:var(--cyan);margin:0 4px}
+  .hero .dates{margin-top:10px;font-size:13px;color:var(--txt2)}
+  .pills{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin-top:16px}
+  .pill{font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px;
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#e4ecf8}
+  .pill.g{background:rgba(52,211,153,.14);border-color:rgba(52,211,153,.4);color:#6ee7b7}
+  .pill.a{background:rgba(251,191,36,.14);border-color:rgba(251,191,36,.4);color:#fcd34d}
+  .pill.r{background:rgba(251,113,133,.14);border-color:rgba(251,113,133,.4);color:#fda4af}
 
-    /* Container & Layout */
-    .container { max-width: 900px; margin: 20px auto; padding: 0 15px; }
-    .panel { display: none; }
-    .panel.active { display: block; }
+  /* ---------- NAV ---------- */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(10,15,28,.92);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;gap:6px;overflow-x:auto;padding:10px 16px;scrollbar-width:none}
+  .nav-inner::-webkit-scrollbar{display:none}
+  .nav button{flex:0 0 auto;background:transparent;color:var(--txt2);border:1px solid var(--line2);
+    padding:8px 14px;border-radius:999px;font-size:13px;font-weight:700;cursor:pointer;
+    font-family:inherit;transition:.15s}
+  .nav button:hover{color:var(--txt);border-color:var(--cyan)}
+  .nav button.on{background:var(--cyan);color:#06243a;border-color:var(--cyan)}
 
-    /* Cards */
-    .day-card {
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-    .day-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #334155;
-      padding-bottom: 12px;
-      margin-bottom: 15px;
-    }
-    .day-title { font-size: 18px; font-weight: bold; color: #38bdf8; }
-    .day-badge {
-      background: #0284c7;
-      color: #fff;
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: bold;
-    }
-    .grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-    @media(min-width: 768px) {
-      .grid-3 { grid-template-columns: repeat(3, 1fr); }
-      .grid-4 { grid-template-columns: repeat(4, 1fr); }
-      .grid-2 { grid-template-columns: repeat(2, 1fr); }
-      .hero h1 { font-size: 32px; }
-    }
-    .sub-card {
-      background: #0f172a;
-      border: 1px solid #1e293b;
-      border-radius: 8px;
-      padding: 12px;
-    }
-    .sub-card h4 { font-size: 13px; color: #94a3b8; margin-bottom: 4px; }
-    .sub-card .name { font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 6px; }
-    .sub-card p { font-size: 12px; color: #cbd5e1; }
+  /* day jump chips */
+  .daybar{display:flex;gap:6px;overflow-x:auto;padding:12px 0 2px;scrollbar-width:none}
+  .daybar::-webkit-scrollbar{display:none}
+  .daybar a{flex:0 0 auto;border:1px solid var(--line2);border-bottom-style:solid;border-radius:10px;
+    padding:7px 12px;font-size:12px;font-weight:700;color:var(--txt2);background:var(--card)}
+  .daybar a:hover{color:var(--cyan);border-color:var(--cyan)}
+  .daybar a b{color:var(--txt);display:block;font-size:13px}
 
-    /* Swap button */
-    .swap-btn {
-      margin-top: 10px;
-      display: inline-block;
-      background: #0369a1;
-      color: #fff;
-      border: none;
-      padding: 4px 10px;
-      border-radius: 4px;
-      font-size: 11px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .swap-btn:hover { background: #0284c7; }
+  .panel{display:none;padding-top:8px}
+  .panel.on{display:block}
 
-    /* Tables */
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { padding: 10px 12px; border: 1px solid #334155; text-align: left; font-size: 13px; }
-    th { background: #0f172a; color: #38bdf8; }
-    td { background: #1e293b; }
-  </style>
+  /* ---------- DAY CARD ---------- */
+  .day{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    margin:16px 0;overflow:hidden;scroll-margin-top:72px}
+  .day-top{padding:16px 18px;background:linear-gradient(180deg,rgba(56,189,248,.10),transparent);
+    border-bottom:1px solid var(--line)}
+  .day-no{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--cyan)}
+  .day-h{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;margin-top:4px}
+  .day-h h2{font-size:17px;font-weight:800;letter-spacing:-.01em}
+  .badge{font-size:11px;font-weight:800;padding:3px 9px;border-radius:7px;background:#0ea5e9;color:#04202f;white-space:nowrap}
+  .badge.g{background:var(--emerald);color:#052e1f}
+  .badge.a{background:var(--amber);color:#3b2600}
+  .badge.r{background:var(--rose);color:#45091a}
+  .badge.v{background:var(--violet);color:#2a1065}
+  .day-sub{margin-top:8px;font-size:12.5px;color:var(--txt3)}
+
+  /* ---------- TIMELINE ---------- */
+  .tl{padding:6px 18px 18px}
+  .ev{position:relative;padding:16px 0 16px 76px;border-bottom:1px dashed var(--line)}
+  .ev:last-child{border-bottom:none;padding-bottom:4px}
+  .ev .time{position:absolute;left:0;top:18px;width:58px;text-align:right;
+    font-size:13px;font-weight:800;color:var(--cyan);font-variant-numeric:tabular-nums}
+  .ev::before{content:"";position:absolute;left:66px;top:0;bottom:0;width:2px;background:var(--line)}
+  .ev:first-child::before{top:18px}
+  .ev:last-child::before{bottom:auto;height:20px}
+  .ev::after{content:"";position:absolute;left:61px;top:21px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--line2)}
+  .ev.key::after{border-color:var(--amber);background:var(--amber);box-shadow:0 0 0 4px rgba(251,191,36,.15)}
+  .ev.must::after{border-color:var(--rose);background:var(--rose);box-shadow:0 0 0 4px rgba(251,113,133,.18)}
+  .ev .lbl{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--txt3);text-transform:uppercase}
+  .ev h3{font-size:15.5px;font-weight:800;margin:3px 0 6px;line-height:1.4}
+  .ev p{font-size:13.5px;color:var(--txt2);margin-bottom:5px}
+  .ev p:last-child{margin-bottom:0}
+  .tagline{display:inline-block;font-size:12px;font-weight:800;padding:2px 8px;border-radius:6px;margin-bottom:6px}
+  .t-a{background:rgba(251,191,36,.14);color:var(--amber)}
+  .t-g{background:rgba(52,211,153,.14);color:var(--emerald)}
+  .t-r{background:rgba(251,113,133,.14);color:var(--rose)}
+  .t-c{background:rgba(56,189,248,.14);color:var(--cyan)}
+  .note{font-size:12.5px;color:var(--amber);background:rgba(251,191,36,.07);
+    border-left:3px solid var(--amber);padding:7px 11px;border-radius:0 8px 8px 0;margin-top:8px}
+  .note.c{color:#7dd3fc;background:rgba(56,189,248,.07);border-color:var(--cyan)}
+  .note.g{color:#6ee7b7;background:rgba(52,211,153,.07);border-color:var(--emerald)}
+  .fast{display:inline-block;font-size:11px;font-weight:800;color:#fcd34d;
+    border:1px dashed rgba(251,191,36,.5);border-radius:6px;padding:1px 7px;margin-left:6px}
+  .swap{margin-top:10px;background:transparent;color:var(--cyan);border:1px solid var(--line2);
+    padding:6px 12px;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit}
+  .swap:hover{border-color:var(--cyan);background:rgba(56,189,248,.08)}
+
+  /* ---------- GENERIC BLOCKS ---------- */
+  .block{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 18px;margin:16px 0}
+  .block > h2{font-size:17px;font-weight:800;margin-bottom:4px}
+  .block > .lead{font-size:12.5px;color:var(--txt3);margin-bottom:14px}
+  .cols{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:720px){ .cols.c2{grid-template-columns:1fr 1fr} .cols.c4{grid-template-columns:1fr 1fr} }
+  @media(min-width:980px){ .cols.c4{grid-template-columns:repeat(4,1fr)} }
+  .mini{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .mini h4{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--txt3);margin-bottom:5px}
+  .mini .nm{font-size:14.5px;font-weight:800;margin-bottom:6px}
+  .mini p{font-size:13px;color:var(--txt2)}
+
+  /* checklist */
+  .chk{display:flex;gap:11px;align-items:flex-start;background:var(--card2);
+    border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .chk input{width:20px;height:20px;margin-top:2px;accent-color:#34d399;flex:0 0 auto;cursor:pointer}
+  .chk .nm{font-size:14.5px;font-weight:800}
+  .chk .wh{font-size:12px;color:var(--txt3);margin-top:2px}
+  .chk input:checked + div .nm{text-decoration:line-through;color:var(--txt3)}
+
+  /* table */
+  .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;min-width:620px;margin-top:10px}
+  th,td{padding:11px 13px;border:1px solid var(--line);text-align:left;font-size:13px;vertical-align:top}
+  th{background:var(--bg2);color:var(--cyan);font-weight:800;white-space:nowrap}
+  td{background:var(--card2);color:var(--txt2)}
+  td strong{color:var(--txt)}
+
+  footer{text-align:center;font-size:12px;color:var(--txt3);padding:28px 16px 0}
+</style>
 </head>
 <body>
 
-  <!-- Hero Header -->
-  <header class="hero">
-    <div class="hero-tags">
-      <span class="tag">🌊 跨海單人探索</span>
-      <span class="tag tag-amber">🍺 每天喝酒 ＆ 蛋白質不間斷</span>
-      <span class="tag">🍢 福岡名物脆烤雞皮居酒屋</span>
-      <span class="tag" style="background: #e11d48; color: #fff; border: none;">🎰 柏青哥小鋼珠體驗</span>
-    </div>
-    <h1>釜山 ➔ 福岡 跨年單人深度探索手冊</h1>
-    <p>2026/12/29 (二) – 2027/01/03 (日) ｜ 6 天 5 夜一站式行程網站</p>
-  </header>
+<header class="hero">
+  <div class="kicker">SOLO TRIP ・ BUSAN × FUKUOKA</div>
+  <h1>釜山 <span class="arrow">➔</span> 福岡 跨年單人深度探索手冊</h1>
+  <div class="dates">2026/12/29 (二) – 2027/01/03 (日) ｜ 6 天 5 夜</div>
+  <div class="pills">
+    <span class="pill g">🥩 無澱粉高蛋白</span>
+    <span class="pill a">🍺 每晚必晚酌</span>
+    <span class="pill">🍜 兩碗湯飯：牛 × 1 ・ 豬 × 1</span>
+    <span class="pill r">🛍️ 購物快狠準</span>
+    <span class="pill">🌃 雙城登高夜景</span>
+  </div>
+</header>
 
-  <!-- Navigation Bar -->
-  <nav class="nav-bar">
-    <button class="nav-btn active" onclick="switchTab('itinerary')">📅 6日詳細行程</button>
-    <button class="nav-btn" onclick="switchTab('tickets')">🎫 車票船票・特別列車</button>
-    <button class="nav-btn" onclick="switchTab('shopping')">🛍️ 購物專線 (On/單車/高球)</button>
-    <button class="nav-btn" onclick="switchTab('pachinko')">🎰 小鋼珠體驗指南</button>
-    <button class="nav-btn" onclick="switchTab('nightview')">🌃 雙城絕美夜景</button>
-  </nav>
+<nav class="nav">
+  <div class="nav-inner wrap" style="padding-left:16px;padding-right:16px">
+    <button class="on" data-tab="itinerary">📅 六日行程</button>
+    <button data-tab="musteat">🍖 必吃清單</button>
+    <button data-tab="transport">🎫 交通・住宿</button>
+    <button data-tab="shopping">🛍️ 購物</button>
+    <button data-tab="night">🌃 夜景</button>
+    <button data-tab="pachinko">🎰 小鋼珠</button>
+  </div>
+</nav>
 
-  <div class="container">
+<div class="wrap">
 
-    <!-- PANEL 1: ITINERARY -->
-    <div id="itinerary" class="panel active">
-      
-      <!-- Day 1 -->
-      <div class="day-card">
-        <div class="day-header">
-          <div class="day-title">12/29 (二) Day 1：抵達釜山 ➔ 經典白湯初夜</div>
-          <div class="day-badge">華航 CI186</div>
-        </div>
-        <p style="font-size: 13px; color: #94a3b8; margin-bottom: 12px;">航班：15:40 TPE ➔ 18:50 PUS ｜ 住宿：東橫 INN 釜山站 1 號店</p>
-        <div class="grid grid-3">
-          <div class="sub-card">
-            <h4>19:40 抵達入住</h4>
-            <div class="name"><a href="https://www.toyoko-inn.com/china/search/detail/00194" target="_blank">東橫 INN 釜山站 1 號店</a></div>
-            <p>地鐵 1 號出口直達，最快速度辦理入住並放妥行李。</p>
-          </div>
-          <div class="sub-card">
-            <h4>20:15 晚餐 (第 1 碗湯飯)</h4>
-            <div class="name"><a href="https://www.visitbusan.net/index.do?lang_cd=ko&menuCd=DOM_000000201001001000&uc_seq=230" target="_blank">本錢豬肉湯飯 (본전돼지국밥)</a></div>
-            <p>釜山站旁第一名店！點純肉湯飯＋加點「水煮白肉切盤（수육）」補充高蛋白，配一瓶真露燒酒。</p>
-          </div>
-          <div class="sub-card">
-            <h4>21:30 宵夜尋寶</h4>
-            <div class="name">GS25 ＆ 7-Eleven 超商新酒</div>
-            <p>鎖定話題新品：「MAK & SKEY」（地平馬格利 x 金賓威士忌）或 7-11「透明罐生拉格啤酒」，回房開喝。</p>
-          </div>
-        </div>
-      </div>
+<!-- ================= ITINERARY ================= -->
+<section id="itinerary" class="panel on">
 
-      <!-- Day 2 -->
-      <div class="day-card">
-        <div class="day-header">
-          <div class="day-title">12/30 (三) Day 2：西面商圈 ➔ 荒嶺山夜景 ➔ 60炸雞房間晚酌</div>
-          <div class="day-badge" style="background: #10b981;">高蛋白能量日</div>
-        </div>
-        <p style="font-size: 13px; color: #94a3b8; margin-bottom: 12px;">重點：一人友善炭火烤雞排、計程車上荒嶺山、房間獨享蒜香炸雞燒酒</p>
-        <div class="grid grid-4">
-          <div class="sub-card">
-            <h4>08:30 飯店早餐</h4>
-            <div class="name">東橫 INN 早餐</div>
-            <p>稍微少吃澱粉，保留食量給 11:00 營業的西面炭火烤雞排。</p>
-          </div>
-          <div class="sub-card">
-            <h4>11:30 一人午餐 (可切換)</h4>
-            <div id="d2-lunch-1">
-              <div class="name"><a href="https://map.naver.com/" target="_blank">계주 (Gyeju 炭火烤雞排)</a></div>
-              <p style="color: #34d399; font-weight: bold;">★ 專為單人準備的炭火雞排套餐</p>
-              <p>無兩人份門檻！純炭火香、鮮嫩雞腿肉高蛋白，一人吃超自在。</p>
-            </div>
-            <div id="d2-lunch-2" style="display: none;">
-              <div class="name"><a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201002002001&uc_seq=1616&lang_cd=ko" target="_blank">松亭三代豬肉湯飯</a></div>
-              <p style="color: #fbbf24; font-weight: bold;">★ 西面市場 80 年老字號</p>
-              <p>若當天想吃湯飯，可換成這家濃郁大骨白湯配鮮韭菜。</p>
-            </div>
-            <button class="swap-btn" onclick="toggleOption('d2-lunch')">⇄ 點擊切換午餐方案</button>
-          </div>
-          <div class="sub-card">
-            <h4>17:00 荒嶺山夜景</h4>
-            <div class="name"><a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=377&lang_cd=ko" target="_blank">荒嶺山烽燧臺</a></div>
-            <p>地鐵「市廳站」出站叫計程車到山頂停車場（車資約 ₩5,000~6,000），走平路木棧道 10 分鐘即達觀景台，免爬山路！</p>
-          </div>
-          <div class="sub-card">
-            <h4>20:30 晚餐配酒</h4>
-            <div class="name"><a href="https://www.60chicken.com/" target="_blank">60雞 (60계치킨) 草梁店</a></div>
-            <p>外帶招牌 CCC 蒜香微辣炸雞（建議選翅腿部位拼盤 봉/윙 combo），回房間配燒酒啤酒痛快享受一人盛宴！</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Day 3 -->
-      <div class="day-card">
-        <div class="day-header">
-          <div class="day-title">12/31 (四) Day 3：南浦洞採購 ➔ 新東亞海鮮市場一人吃蟹 ➔ 敲鐘跨年</div>
-          <div class="day-badge" style="background: #f59e0b; color: #000;">跨年重頭戲</div>
-        </div>
-        <p style="font-size: 13px; color: #94a3b8; margin-bottom: 12px;">重點：新東亞市場一人吃蟹、散步回飯店免擠跨年地鐵管制</p>
-        <div class="grid grid-4">
-          <div class="sub-card">
-            <h4>11:30 今日第 2 碗湯飯</h4>
-            <div class="name"><a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201002001000&uc_seq=198" target="_blank">新昌豬肉湯飯 (신창국밥)</a></div>
-            <p>南浦洞名店，獨特深色中藥材熬製清高湯，醇厚溫補不油膩，一人入座上菜迅速。</p>
-          </div>
-          <div class="sub-card">
-            <h4>14:00 光復路購物</h4>
-            <div class="name"><a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=378&lang_cd=ko" target="_blank">National Geographic 旗艦店</a></div>
-            <p>試穿韓國限定戶外機能羽絨外套與潮流服飾，免稅退稅一站完成。</p>
-          </div>
-          <div class="sub-card">
-            <h4>18:30 跨年海鮮晚餐</h4>
-            <div class="name"><a href="https://map.naver.com/" target="_blank">新東亞市場 보배상회 (85/87號攤)</a></div>
-            <p>攤位旁開桌現蒸！挑選小隻活帝王蟹或約 1kg 松葉蟹，配贈送扇貝與燒酒，以蟹膏炒飯收尾（免收二樓代客料理費）。</p>
-          </div>
-          <div class="sub-card">
-            <h4>23:30 敲鐘跨年</h4>
-            <div class="name"><a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=379&lang_cd=ko" target="_blank">龍頭山公園敲鐘儀式</a></div>
-            <p>在釜山塔下看市民敲鐘，散場步行 20 分鐘悠閒返回釜山站東橫 INN，避開地鐵塞車！</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Day 4 (Featuring Jeongjitgan Michelin Bib Gourmand) -->
-      <div class="day-card">
-        <div class="day-header">
-          <div class="day-title">01/01 (五) Day 4：米其林正饔間 ➔ 新山茶花號夜宿出海</div>
-          <div class="day-badge" style="background: #e11d48;">米其林必比登</div>
-        </div>
-        <p style="font-size: 13px; color: #94a3b8; margin-bottom: 12px;">重點：必吃正饔間松阪豬肉湯飯、新山茶花號國際航線（展望大浴場與海景啤酒）</p>
-        <div class="grid grid-3">
-          <div class="sub-card">
-            <h4>11:30 今日第 3 碗湯飯 (必吃！)</h4>
-            <div class="name"><a href="https://guide.michelin.com/kr/ko/busan-region/busan_1025838/restaurant/jeongjitgan" target="_blank">정짓간 (正饔間 釜山站店)</a></div>
-            <p style="color: #fb7185; font-weight: bold;">★ 米其林必比登推薦 ｜ 2F設有一人吧台座</p>
-            <p><strong>地址</strong>：부산 동구 중앙대로209번길 11（舊百濟醫院旁，東橫INN步行3分鐘）。<br>
-            <strong>推薦</strong>：招牌「義城大蒜豬肉湯飯 (의성마늘국밥)」或「松阪豬白肉套餐 (항정살 수육백반)」，湯頭濃郁無腥味，平板點餐超自在！</p>
-          </div>
-          <div class="sub-card">
-            <h4>14:00 下午放空 (可切換)</h4>
-            <div id="d4-afternoon-1">
-              <div class="name"><a href="https://map.naver.com/" target="_blank">Liberta Cheongsapo 咖啡</a></div>
-              <p style="color: #38bdf8; font-weight: bold;">★ 三層木質海景咖啡廳</p>
-              <p>搭計程車直達青沙浦，坐在窗邊大片落地窗前喝手沖咖啡看紅白燈塔。</p>
-            </div>
-            <div id="d4-afternoon-2" style="display: none;">
-              <div class="name">釜山站與南浦洞漫遊</div>
-              <p style="color: #fbbf24; font-weight: bold;">★ 慵懶整理行李與採買</p>
-              <p>留在飯店周邊咖啡廳看書休息，採購最後伴手禮，避開長途車程。</p>
-            </div>
-            <button class="swap-btn" onclick="toggleOption('d4-afternoon')">⇄ 點擊切換方案</button>
-          </div>
-          <div class="sub-card">
-            <h4>17:00 釜山港報到登船</h4>
-            <div class="name"><a href="https://www.camellia-line.co.jp" target="_blank">新山茶花號 (New Camellia)</a></div>
-            <p>16:30–18:30 報到（20:00 前登船，22:30 啟航）。一人泡免費展望大浴場，在甲板喝生啤酒吹海風跨越海峽。</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Day 5 (Featuring Fukuoka Grilled Chicken Skin Izakaya & Pachinko) -->
-      <div class="day-card">
-        <div class="day-header">
-          <div class="day-title">01/02 (六) Day 5：抵達福岡 ➔ 裝備採購 / 觀光列車 ➔ 皿倉山夜景 ➔ 名物烤雞皮晚酌・小鋼珠</div>
-          <div class="day-badge" style="background: #f43f5e;">福岡居酒屋烤雞皮</div>
-        </div>
-        <p style="font-size: 13px; color: #94a3b8; margin-bottom: 12px;">重點：On 跑鞋 / 特別美食觀光列車 / 北九州皿倉山軌道纜車 / 福岡名物脆烤雞皮配生啤酒 / 柏青哥初體驗</p>
-        <div class="grid grid-4">
-          <div class="sub-card">
-            <h4>09:30 On 跑鞋採購</h4>
-            <div class="name"><a href="https://www.yodobashi.com/ec/store/0088/" target="_blank">石井運動 (Yodobashi 博多 2F)</a></div>
-            <p>博多站筑紫口旁，擁有一整面 On 專屬展示牆，尺寸款式最齊全。4F 還有 Lopia 超市。</p>
-          </div>
-
-          <!-- Day 5 Lunch Swap: Convenience Store vs The Rail Kitchen Chikugo -->
-          <div class="sub-card">
-            <h4>12:00 午餐饗宴 (可切換)</h4>
-            <div id="d5-lunch-1">
-              <div class="name">日本超商爆漿起司漢堡排</div>
-              <p style="color: #38bdf8; font-weight: bold;">★ 超快高蛋白極速補給</p>
-              <p>超商冷藏「鉄板焼ハンバーグ チーズインデミグラス」，搭 SAVAS 高蛋白牛奶，10 分鐘完成補給。</p>
-            </div>
-            <div id="d5-lunch-2" style="display: none;">
-              <div class="name"><a href="https://www.railkitchen.jp/zh/" target="_blank">THE RAIL KITCHEN CHIKUGO</a></div>
-              <p style="color: #f59e0b; font-weight: bold;">★ 西鐵移動美食觀光列車</p>
-              <p>週六 Early Lunch（福岡天神出發往返，含乘車＋現烤窯烤季節料理，13,000 日圓）。一邊看窗景一邊品嚐筑後產地美味！</p>
-            </div>
-            <button class="swap-btn" onclick="toggleOption('d5-lunch')">⇄ 點擊切換觀光列車/超商</button>
-          </div>
-
-          <div class="sub-card">
-            <h4>13:30 單車 ＆ 高球專賣</h4>
-            <div class="name"><a href="https://luzfukuokatenjin.com/shop/ys-road" target="_blank">Y's Road</a> ＆ <a href="https://store.alpen-group.jp/alpenfukuoka/CSfStoreTop.jsp" target="_blank">GOLF5</a></div>
-            <p>天神 Y's Road 買車衣配件，運河城 GOLF5 選購球具，並至 <a href="https://www.crossroadfukuoka.jp/spot/10777" target="_blank">櫛田神社</a> 求五合一開運御守。</p>
-          </div>
-
-          <!-- Day 5 Dinner: Chicken Skin Izakaya (Kawaya or Shin-Jidai) -->
-          <div class="sub-card">
-            <h4>19:30 晚餐烤雞皮 (可切換)</h4>
-            <div id="d5-dinner-1">
-              <div class="name"><a href="https://hakatakawaya.com/shoplist/shop/913/" target="_blank">博多かわ屋 (祇園店 / 白金本店)</a></div>
-              <p style="color: #fb7185; font-weight: bold;">★ 福岡元祖 Q 彈螺旋烤雞皮</p>
-              <p>反覆烘烤浸醬 6 天的極致工法！一人直接點 5~10 支起跳，外酥內 Q 彈，搭配生啤酒是福岡男人的靈魂！</p>
-            </div>
-            <div id="d5-dinner-2" style="display: none;">
-              <div class="name"><a href="https://shinjidaihakataekimaeten.owst.jp/" target="_blank">新時代 (博多站前店 / 天神店)</a></div>
-              <p style="color: #fbbf24; font-weight: bold;">★ 酥脆金字塔「傳串」</p>
-              <p>一支才 50 日圓！酥脆到像餅乾般的高人氣名物，疊成金字塔點 6 支以上，高 CP 值配生啤超痛快！</p>
-            </div>
-            <button class="swap-btn" onclick="toggleOption('d5-dinner')">⇄ 點擊切換かわ屋 / 新時代</button>
-            <p style="font-size: 11px; color: #94a3b8; margin-top: 6px;">吃完漫步中洲河畔夜色，順路至筑紫口體驗小鋼珠！</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Day 6 -->
-      <div class="day-card">
-        <div class="day-header">
-          <div class="day-title">01/03 (日) Day 6：LaLaport 實物大鋼彈 ➔ 滿載賦歸台灣</div>
-          <div class="day-badge" style="background: #14b8a6;">華航 CI117</div>
-        </div>
-        <p style="font-size: 13px; color: #94a3b8; margin-bottom: 12px;">交通：20:35 FUK ➔ 22:20 TPE ｜ 福岡機場地鐵直達只需 5 分鐘</p>
-        <div class="grid grid-3">
-          <div class="sub-card">
-            <h4>10:00 實物大 ν 鋼彈立像</h4>
-            <div class="name"><a href="https://mitsui-shopping-park.com/tw/lalaport/fukuoka/" target="_blank">LaLaport 福岡</a></div>
-            <p>博多站搭直達公車約 20 分鐘。朝聖 1:1 實物大 ν 鋼彈動態演出，參觀 4F GUNDAM SIDE-F 限定專區。</p>
-          </div>
-          <div class="sub-card">
-            <h4>13:00 一人高蛋白定食</h4>
-            <div class="name">商場美食街燒肉/豬排定食</div>
-            <p>LaLaport 美食街選擇極多，一人點份高蛋白厚切日式炸豬排或燒肉定食，飽足過癮。</p>
-          </div>
-          <div class="sub-card">
-            <h4>17:30 飯店取行李送機</h4>
-            <div class="name">博多站 ➔ 福岡機場</div>
-            <p>東橫 INN 取行李，地鐵空港線僅 2 站 5 分鐘直達機場國內線轉免費接駁巴士至國際航廈，搭乘 CI117 順利返台。</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- PANEL 2: TICKETS & TRAINS -->
-    <div id="tickets" class="panel">
-      <div class="day-card">
-        <div class="day-title" style="margin-bottom: 15px;">🎫 車票船票購買・特別觀光列車乘車指南</div>
-        <table>
-          <thead>
-            <tr>
-              <th>交通項目</th>
-              <th>路線區間</th>
-              <th>官方預訂 / 購票方式</th>
-              <th>搭乘關鍵指引</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>西鐵美食觀光列車<br>THE RAIL KITCHEN CHIKUGO</strong></td>
-              <td>西鐵福岡(天神) 往返 或 太宰府/大牟田</td>
-              <td><a href="https://www.railkitchen.jp/zh/travelplan/" target="_blank">西鐵官方線上預約</a><br>(成人 13,000 日圓含乘車+季節餐點)</td>
-              <td><strong>行駛時間</strong>：週四（往返午餐）、週五（經太宰府到大牟田）、<strong>六日/假日（福岡往返 Early Lunch 9:21出發 或 Late Lunch 12:51出發）</strong>。車內設有大烤爐烹製現做筑後在地美食！</td>
-            </tr>
-            <tr>
-              <td><strong>新山茶花號客輪</strong></td>
-              <td>釜山港 ➔ 博多港</td>
-              <td><a href="https://www.camellia-line.co.jp" target="_blank">新山茶花號官方網站</a></td>
-              <td>16:30–18:30 於釜山港國際碼頭 3 樓出境大廳換實體票；20:00 前登船。</td>
-            </tr>
-            <tr>
-              <td><strong>JR 音速號特急</strong></td>
-              <td>JR 博多站 ➔ JR 八幡站</td>
-              <td><a href="https://www.jrkyushu.co.jp/" target="_blank">JR 九州官網</a> 或自動售票機</td>
-              <td>車程約 35 分鐘，可直接刷 IC 卡搭自由席，或綠色窗口劃指定席。</td>
-            </tr>
-            <tr>
-              <td><strong>皿倉山登山纜車</strong></td>
-              <td>山麓站 ➔ 皿倉山頂</td>
-              <td><a href="https://www.sarakurayama-cablecar.co.jp/" target="_blank">皿倉山纜車官方網站</a></td>
-              <td>八幡站前搭乘免費接駁巴士直達纜車站，現場購票搭乘軌道纜車登頂。</td>
-            </tr>
-            <tr>
-              <td><strong>荒嶺山計程車</strong></td>
-              <td>市廳站 ➔ 荒嶺山烽燧臺</td>
-              <td>手機 Kakao T App</td>
-              <td>地鐵「市廳站」出站後叫車直達山頂停車場（車資約 ₩5,000~6,000），免爬山路。</td>
-            </tr>
-            <tr>
-              <td><strong>福岡地下鐵</strong></td>
-              <td>博多站 ➔ 福岡機場</td>
-              <td><a href="https://subway.city.fukuoka.lg.jp/cha_trad/" target="_blank">福岡市地下鐵官網</a></td>
-              <td>博多站至機場僅 2 站 5 分鐘，亦可直接感應信用卡（Visa/Mastercard）進站。</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- PANEL 3: SHOPPING -->
-    <div id="shopping" class="panel">
-      <div class="day-card">
-        <div class="day-title" style="margin-bottom: 15px;">🛍️ 一人精準採購地圖 (跑鞋 / 單車 / 高球 / 潮流)</div>
-        <div class="grid grid-2">
-          <div class="sub-card">
-            <span class="day-badge">On 跑鞋首選</span>
-            <div class="name" style="margin-top: 6px;"><a href="https://www.yodobashi.com/ec/store/0088/" target="_blank">石井運動 (Yodobashi 博多店 2F)</a></div>
-            <p>博多站筑紫口旁。款式與尺寸比一般運動用品店更齊全，設有一整面 On / Hoka 專屬展示牆，試穿購買極為順暢。4F 還有知名超市 Lopia。</p>
-          </div>
-          <div class="sub-card">
-            <span class="day-badge" style="background: #8b5cf6;">自行車專賣</span>
-            <div class="name" style="margin-top: 6px;"><a href="https://luzfukuokatenjin.com/shop/ys-road" target="_blank">Y's Road 福岡天神店</a></div>
-            <p>天神商圈 Luz 福岡天神 B1F。九州最大公路車/自行車部品專賣店，日系人身部品（Pearl Izumi 等車衣、風鏡、手套）與改裝配件齊備。</p>
-          </div>
-          <div class="sub-card">
-            <span class="day-badge" style="background: #10b981;">高爾夫球具旗艦</span>
-            <div class="name" style="margin-top: 6px;"><a href="https://store.alpen-group.jp/alpenfukuoka/CSfStoreTop.jsp" target="_blank">GOLF5 旗艦店 (Alpen FUKUOKA)</a></div>
-            <p>博多運河城南館 1F。西日本超大規模高爾夫專門店，設有動態試打果嶺區，各品牌桿身、球服齊全，可直接免稅退稅。</p>
-          </div>
-          <div class="sub-card">
-            <span class="day-badge" style="background: #f59e0b; color: #000;">韓國戶外潮流</span>
-            <div class="name" style="margin-top: 6px;"><a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=378&lang_cd=ko" target="_blank">National Geographic 光復旗艦店</a></div>
-            <p>釜山地鐵南浦站光復路徒步街。韓國限定戶外機能羽絨衣與潮流單品，店面寬敞舒適，可輕鬆挑選試穿。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PANEL 4: PACHINKO -->
-    <div id="pachinko" class="panel">
-      <div class="day-card">
-        <div class="day-title" style="margin-bottom: 15px;">🎰 福岡小鋼珠 (パチンコ Pachinko) 新手體驗秘笈</div>
-        <div class="grid grid-2">
-          <div class="sub-card">
-            <div class="name" style="color: #38bdf8;">精選店家推薦 (交通極度便利)</div>
-            <p><strong>1. プラザ博多 (Plaza 博多)</strong>：博多站筑紫口步行 30 秒（Clio Court 飯店旁），超過 1,000 台規模，設有禁煙與加熱菸專區，新手友善！</p>
-            <p style="margin-top: 6px;"><strong>2. 123博多店 / 玉屋本店</strong>：鄰近中洲與住吉，逛完中洲夜市或吃完烤雞皮可順路體驗。</p>
-          </div>
-          <div class="sub-card">
-            <div class="name" style="color: #fbbf24;">新手入門 3 大避雷法則</div>
-            <p><strong>★ 找「1円パチンコ (1圓台)」</strong>：機台面板會標註「1玉1円」或「1玉4円」。新手請認明「1円台」，1,000 日圓可換 1,000 顆鋼珠，能輕鬆玩很久體驗動畫樂趣（如鋼彈、EVA 等熱門動漫機台）。</p>
-            <p style="margin-top: 6px;"><strong>★ 怎麼開始</strong>：把千圓鈔票塞入機台右上角的插槽，按下「玉貸」按鈕，鋼珠就會自動流出到托盤，右手轉動右下方的旋鈕控制彈力即可開始！</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PANEL 5: NIGHTVIEW -->
-    <div id="nightview" class="panel">
-      <div class="day-card">
-        <div class="day-title" style="margin-bottom: 15px;">🌃 雙城登高絕美夜景（避雷與無痛指南）</div>
-        <div class="grid grid-2">
-          <div class="sub-card">
-            <div class="name" style="color: #38bdf8;">釜山・荒嶺山烽燧臺 (360度全景)</div>
-            <p><strong>避雷交通法</strong>：千萬不要依導航從山腳摸黑爬 45 分鐘山路！</p>
-            <p><strong>正確做法</strong>：搭地鐵 1 號線到<strong>「市廳站」</strong>，出站直接叫計程車開到「荒嶺山烽燧臺停車場」（車資約 ₩5,000–6,000，車程 12 分鐘）。下車後走平坦木棧道 10 分鐘即達觀景台。</p>
-            <p style="color: #f59e0b; margin-top: 6px;">★ 山頂稜線冬季風大且極冷，務必穿著防風保暖大衣！</p>
-          </div>
-          <div class="sub-card">
-            <div class="name" style="color: #f43f5e;">北九州・皿倉山展望台 (新日本三大夜景)</div>
-            <p><strong>百億美元夜景</strong>：全景視野俯瞰北九州工業港灣與若戶大橋燈火，震撼度遠超一般市區展望台。</p>
-            <p><strong>交通方式</strong>：博多站搭 JR 音速號特急（35 分鐘）到八幡站，轉乘免費接駁巴士直達登山纜車站，搭乘透明玻璃軌道纜車直接滑行登頂，完全不需健行。</p>
-            <p style="color: #38bdf8; margin-top: 6px;">★ 建議於傍晚日落前 30 分鐘登頂，同時收穫魔幻時刻夕陽與百億夜景。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <div class="daybar">
+    <a href="#d1">12/29 二<b>Day 1</b></a>
+    <a href="#d2">12/30 三<b>Day 2</b></a>
+    <a href="#d3">12/31 四<b>Day 3</b></a>
+    <a href="#d4">01/01 五<b>Day 4</b></a>
+    <a href="#d5">01/02 六<b>Day 5</b></a>
+    <a href="#d6">01/03 日<b>Day 6</b></a>
   </div>
 
-  <script>
-    function switchTab(tabId) {
-      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      event.currentTarget.classList.add('active');
-    }
+  <!-- DAY 1 -->
+  <article class="day" id="d1">
+    <div class="day-top">
+      <div class="day-no">DAY 1 ・ 12/29 (二)</div>
+      <div class="day-h"><h2>抵達釜山 ➔ 無澱粉炸雞初夜</h2><span class="badge">華航 CI186</span></div>
+      <div class="day-sub">15:40 TPE ➔ 18:50 PUS ｜ 住宿：東橫 INN 釜山站 1 號店（連住 3 晚）</div>
+    </div>
+    <div class="tl">
+      <div class="ev">
+        <div class="time">19:00</div>
+        <div class="lbl">交通</div>
+        <h3>金海機場 ➔ 釜山站</h3>
+        <p>機場輕軌至沙上 ➔ 地鐵 2 號線至西面 ➔ 轉 1 號線至釜山站；行李多就直接計程車（約 ₩18,000）。</p>
+      </div>
+      <div class="ev">
+        <div class="time">19:40</div>
+        <div class="lbl">住宿</div>
+        <h3><a href="https://www.toyoko-inn.com/china/search/detail/00194" target="_blank" rel="noopener">東橫 INN 釜山站 1 號店</a></h3>
+        <p>地鐵 1 號出口直達，快速 check-in 放妥行李。</p>
+      </div>
+      <div class="ev key">
+        <div class="time">20:30</div>
+        <div class="lbl">晚餐</div>
+        <h3><a href="https://www.60chicken.com/" target="_blank" rel="noopener">60雞 (60계치킨) 草梁店</a></h3>
+        <span class="tagline t-g">★ 純蛋白質・今晚不碰澱粉</span>
+        <p>機上已吃飛機餐，外帶招牌 <strong>CCC 蒜香微辣脆皮炸雞</strong>，部位指定翅腿拼盤（봉/윙 combo）。</p>
+      </div>
+      <div class="ev">
+        <div class="time">21:30</div>
+        <div class="lbl">晚酌</div>
+        <h3>GS25 ＆ 7-Eleven 搜話題新酒</h3>
+        <p>鎖定「MAK &amp; SKEY」（地平馬格利 × 金賓威士忌）或 7-11「透明罐生拉格啤酒」，回房吹暖氣配炸雞。</p>
+      </div>
+    </div>
+  </article>
 
-    function toggleOption(groupId) {
-      if (groupId === 'd2-lunch') {
-        const o1 = document.getElementById('d2-lunch-1');
-        const o2 = document.getElementById('d2-lunch-2');
-        if (o1.style.display === 'none') {
-          o1.style.display = 'block';
-          o2.style.display = 'none';
-        } else {
-          o1.style.display = 'none';
-          o2.style.display = 'block';
-        }
-      } else if (groupId === 'd4-afternoon') {
-        const o1 = document.getElementById('d4-afternoon-1');
-        const o2 = document.getElementById('d4-afternoon-2');
-        if (o1.style.display === 'none') {
-          o1.style.display = 'block';
-          o2.style.display = 'none';
-        } else {
-          o1.style.display = 'none';
-          o2.style.display = 'block';
-        }
-      } else if (groupId === 'd5-lunch') {
-        const o1 = document.getElementById('d5-lunch-1');
-        const o2 = document.getElementById('d5-lunch-2');
-        if (o1.style.display === 'none') {
-          o1.style.display = 'block';
-          o2.style.display = 'none';
-        } else {
-          o1.style.display = 'none';
-          o2.style.display = 'block';
-        }
-      } else if (groupId === 'd5-dinner') {
-        const o1 = document.getElementById('d5-dinner-1');
-        const o2 = document.getElementById('d5-dinner-2');
-        if (o1.style.display === 'none') {
-          o1.style.display = 'block';
-          o2.style.display = 'none';
-        } else {
-          o1.style.display = 'none';
-          o2.style.display = 'block';
-        }
-      }
-    }
-  </script>
+  <!-- DAY 2 -->
+  <article class="day" id="d2">
+    <div class="day-top">
+      <div class="day-no">DAY 2 ・ 12/30 (三)</div>
+      <div class="day-h"><h2>廣安里牛肉湯飯 ➔ 荒嶺山夜景 ➔ 一人份拐角豬腳</h2><span class="badge g">高蛋白能量日</span></div>
+      <div class="day-sub">今日兩大主菜：牛肉湯飯 ①、一人份滷豬腳。購物只排 1 小時。</div>
+    </div>
+    <div class="tl">
+      <div class="ev">
+        <div class="time">08:30</div>
+        <div class="lbl">早餐</div>
+        <h3>東橫 INN 飯店早餐</h3>
+        <p>輕食適量、少碰澱粉，保留食量給中午的牛肉湯飯。</p>
+      </div>
+      <div class="ev must">
+        <div class="time">11:30</div>
+        <div class="lbl">午餐 ・ 牛肉湯飯</div>
+        <h3>바로해장（Baro Haejang 廣安里）</h3>
+        <span class="tagline t-a">★ 必吃・소한마리 해장국</span>
+        <p>整塊新鮮牛血糕＋大量牛肉，湯頭近似羅州곰탕，清爽不油膩。地鐵 2 號線廣安站。</p>
+        <p><strong>地址</strong>：부산 수영구 광남로94번길 2, 101호</p>
+        <div class="note">⚠️ 營業時間各家資料不一（09:00–22:00 或 11:30–21:00、中休 15:30–17:30），<strong>11:30 到最保險</strong>。常態排隊，建議用 캐치테이블 遠端取號；不可外帶外送。</div>
+      </div>
+      <div class="ev">
+        <div class="time">13:00</div>
+        <div class="lbl">散步</div>
+        <h3>廣安里海水浴場 ＋ 廣安大橋</h3>
+        <p>餐後沿海灘散步消化，白天先看一次廣安大橋，晚上荒嶺山再看一次夜景版。</p>
+      </div>
+      <div class="ev">
+        <div class="time">14:30</div>
+        <div class="lbl">購物 <span class="fast">60 分鐘</span></div>
+        <h3><a href="https://www.visitbusan.net/index.do?lang_cd=ko&menuCd=DOM_000000201001001000&uc_seq=374" target="_blank" rel="noopener">田浦咖啡街 (전포 카페거리)</a></h3>
+        <p>潮流選品聚落，鎖定 2–3 間店快速掃完，不逛滿街。</p>
+      </div>
+      <div class="ev key">
+        <div class="time">16:30</div>
+        <div class="lbl">夜景</div>
+        <h3><a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=377&lang_cd=ko" target="_blank" rel="noopener">荒嶺山烽燧臺</a></h3>
+        <p>Kakao T 叫車直上山頂停車場（₩5,000~6,000），下車走平緩木棧道 10 分鐘即達觀景台，<strong>完全不必爬山</strong>。360 度釜山全景＋廣安大橋夜色。</p>
+        <div class="note">★ 山頂稜線冬季風大且極冷，務必穿防風保暖大衣。</div>
+      </div>
+      <div class="ev must">
+        <div class="time">20:30</div>
+        <div class="lbl">晚餐 ・ 必吃</div>
+        <h3>모퉁이족발 서면본점（拐角豬蹄 西面總店）</h3>
+        <span class="tagline t-a">★ 一人份 Q 彈醬香滷豬腳</span>
+        <p>點一人份小份豬腳，滿滿膠原蛋白與瘦肉，配燒酒微醺；也可外帶回飯店慢慢啃。</p>
+        <p><strong>地址</strong>：부산 부산진구 중앙대로680번길 80-19 B동 1층</p>
+        <div class="note g">✓ 營業時間 14:00–01:00（最後點餐 00:00），20:30 進去非常從容。</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- DAY 3 -->
+  <article class="day" id="d3">
+    <div class="day-top">
+      <div class="day-no">DAY 3 ・ 12/31 (四)</div>
+      <div class="day-h"><h2>南浦洞快閃採購 ➔ 新東亞市場一人吃蟹 ➔ 敲鐘跨年</h2><span class="badge a">跨年重頭戲</span></div>
+      <div class="day-sub">中午刻意只墊胃，全部戰力留給 18:30 的活蟹大餐。</div>
+    </div>
+    <div class="tl">
+      <div class="ev">
+        <div class="time">11:30</div>
+        <div class="lbl">午餐</div>
+        <h3>輕食／超商高蛋白補給</h3>
+        <span class="tagline t-g">★ 不吃湯飯、不吃飯麵</span>
+        <p>GS25／CU 的高蛋白飲（단백질 음료）、水煮蛋或雞胸肉解決即可。</p>
+      </div>
+      <div class="ev">
+        <div class="time">14:00</div>
+        <div class="lbl">購物 <span class="fast">40 分鐘</span></div>
+        <h3><a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=378&lang_cd=ko" target="_blank" rel="noopener">National Geographic 光復旗艦店</a></h3>
+        <p>目標明確：韓國限定機能羽絨外套。試穿決定就結帳退稅，不逛其他樓層。</p>
+      </div>
+      <div class="ev must">
+        <div class="time">18:30</div>
+        <div class="lbl">跨年晚餐 ・ 必吃</div>
+        <h3>新東亞水產物綜合市場 1F ｜ 보배상회（85、87 號攤）</h3>
+        <span class="tagline t-a">★ 攤位旁直接開桌現蒸</span>
+        <p>告知老闆一人用餐，挑最小隻活帝王蟹（約 1.2~1.5kg）或 1 隻約 1kg 大松葉蟹，配附贈的清蒸扇貝蛤蜊與燒酒，最後請店家炒一碗<strong>蟹膏炒飯</strong>收尾。</p>
+        <div class="note g">✓ 在攤位旁用餐免收二樓代客料理費與開桌人頭費。</div>
+      </div>
+      <div class="ev">
+        <div class="time">23:30</div>
+        <div class="lbl">跨年</div>
+        <h3>龍頭山公園（釜山塔）市民敲鐘儀式</h3>
+        <p>先漫步光復路冬季燈節，23:30 上龍頭山倒數。散場<strong>步行 20 分鐘</strong>回釜山站東橫 INN，完全避開地鐵人潮管制。</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- DAY 4 -->
+  <article class="day" id="d4">
+    <div class="day-top">
+      <div class="day-no">DAY 4 ・ 01/01 (五)</div>
+      <div class="day-h"><h2>米其林正饔間 ➔ 新山茶花號夜宿出海</h2><span class="badge r">米其林必比登</span></div>
+      <div class="day-sub">全程唯一一碗豬肉湯飯，吃完下午放空、傍晚登船跨海。</div>
+    </div>
+    <div class="tl">
+      <div class="ev">
+        <div class="time">09:30</div>
+        <div class="lbl">退房</div>
+        <h3>東橫 INN 退房・大行李寄櫃檯</h3>
+        <p>吃完早餐辦退房，行李寄放，輕裝吃湯飯＋下午放空，傍晚回來取。</p>
+      </div>
+      <div class="ev must">
+        <div class="time">11:30</div>
+        <div class="lbl">午餐 ・ 豬肉湯飯（全程唯一）</div>
+        <h3><a href="https://guide.michelin.com/kr/ko/busan-region/busan_1025838/restaurant/jeongjitgan" target="_blank" rel="noopener">정짓간（正饔間 釜山站店）</a></h3>
+        <span class="tagline t-r">★ 米其林必比登 ｜ 2F 單人吧台座 (혼밥석)</span>
+        <p><strong>地址</strong>：부산 동구 중앙대로209번길 11（舊百濟醫院旁，飯店步行 3 分鐘）</p>
+        <p><strong>必點</strong>：「義城大蒜豬肉湯飯 (의성마늘국밥)」或「松阪豬白肉套餐 (항정살 수육백반)」，湯頭濃白醇厚無腥味，個人平板點餐。</p>
+        <div class="note g">✓ 全釜山的豬肉湯飯就吃這一碗，其餘天數完全不碰。</div>
+      </div>
+      <div class="ev">
+        <div class="time">14:00</div>
+        <div class="lbl">下午 ・ 可切換</div>
+        <div id="d4-1">
+          <h3>Liberta Cheongsapo 青沙浦海景咖啡</h3>
+          <span class="tagline t-c">★ 三層木質落地窗海景</span>
+          <p>計程車直達青沙浦，坐窗邊喝手沖咖啡看紅白雙燈塔。</p>
+        </div>
+        <div id="d4-2" style="display:none">
+          <h3>釜山站・南浦洞周邊漫遊</h3>
+          <span class="tagline t-a">★ 慵懶版：不跑遠</span>
+          <p>留在飯店周邊咖啡廳看書休息，順手買最後伴手禮，省下來回車程。</p>
+        </div>
+        <button class="swap" onclick="swap('d4')">⇄ 切換 青沙浦 / 周邊漫遊</button>
+      </div>
+      <div class="ev key">
+        <div class="time">17:00</div>
+        <div class="lbl">登船</div>
+        <h3><a href="https://www.camellia-line.co.jp" target="_blank" rel="noopener">新山茶花號 (New Camellia)</a></h3>
+        <p>步行至 <a href="https://www.busanpa.com/bpt/Contents.do?mCode=MN0007" target="_blank" rel="noopener">釜山港國際客運碼頭</a> 3 樓出境大廳換實體票。<strong>16:30–18:30 報到 ・ 20:00 前登船 ・ 22:30 啟航 ・ 01/02 07:30 抵博多</strong>。</p>
+        <div class="note c">★ 一人泡免費展望大浴場，甲板喝生啤酒吹海風跨越對馬海峽。</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- DAY 5 -->
+  <article class="day" id="d5">
+    <div class="day-top">
+      <div class="day-no">DAY 5 ・ 01/02 (六)</div>
+      <div class="day-h"><h2>極味や和牛漢堡排 ➔ 快閃採購 ➔ 皿倉山百億夜景 ➔ 名物烤雞皮</h2><span class="badge v">福岡滿檔日</span></div>
+      <div class="day-sub">以皿倉山為軸心排序：午餐與購物全部提前，晚餐順延到 20:00。</div>
+    </div>
+    <div class="tl">
+      <div class="ev">
+        <div class="time">07:30</div>
+        <div class="lbl">抵達</div>
+        <h3>博多港 ➔ <a href="https://www.toyoko-inn.com/china/search/detail/00043" target="_blank" rel="noopener">東橫 INN 博多口站前</a></h3>
+        <p>出關搭西鐵巴士（約 15 分鐘）直達博多站，先寄放大行李再開始一天。</p>
+      </div>
+      <div class="ev">
+        <div class="time">09:30</div>
+        <div class="lbl">購物 <span class="fast">40 分鐘</span></div>
+        <h3><a href="https://www.yodobashi.com/ec/store/0088/" target="_blank" rel="noopener">石井運動（Yodobashi 博多 2F）｜ On 跑鞋</a></h3>
+        <p>博多站筑紫口旁，整面 On / Hoka 展示牆，尺寸最齊。試穿決定就結帳，同棟 4F 有 Lopia 超市。</p>
+      </div>
+      <div class="ev must">
+        <div class="time">11:00</div>
+        <div class="lbl">午餐 ・ 必吃</div>
+        <h3><a href="https://kiwamiya.com/brand_hamburger/" target="_blank" rel="noopener">極味屋（極味や 博多店 / 地下街店）</a></h3>
+        <span class="tagline t-a">★ 炭火黑毛和牛漢堡排</span>
+        <p>博多巴士總站 1F 或博多地下街。純牛肉生肉餅放高溫鐵石上滋滋現煎，肉汁爆發，一人入座過癮。</p>
+        <div class="note">★ 刻意卡 11:00 開店時段入座避開排隊，才接得上下午購物與皿倉山。</div>
+      </div>
+      <div class="ev">
+        <div class="time">12:00</div>
+        <div class="lbl">購物 <span class="fast">40 分鐘</span></div>
+        <h3><a href="https://luzfukuokatenjin.com/shop/ys-road" target="_blank" rel="noopener">Y's Road 福岡天神店</a>（單車）</h3>
+        <p>Luz 福岡天神 B1F。九州最大單車部品店，鎖定車衣／風鏡／手套等人身部品。</p>
+      </div>
+      <div class="ev">
+        <div class="time">13:00</div>
+        <div class="lbl">購物 <span class="fast">50 分鐘</span></div>
+        <h3><a href="https://store.alpen-group.jp/alpenfukuoka/CSfStoreTop.jsp" target="_blank" rel="noopener">GOLF5 運河城</a> ＋ <a href="https://www.crossroadfukuoka.jp/spot/10777" target="_blank" rel="noopener">櫛田神社</a></h3>
+        <p>Alpen FUKUOKA 1F 挑球具（有試打果嶺區），順路到櫛田神社求五合一開運御守。</p>
+        <div class="note">★ 15:00 前回到博多站（運河城走回約 10 分鐘），買多了先寄回飯店再出發。</div>
+      </div>
+      <div class="ev must">
+        <div class="time">15:30</div>
+        <div class="lbl">夜景 ・ 必去不可取消</div>
+        <h3><a href="https://www.sarakurayama-cablecar.co.jp/" target="_blank" rel="noopener">皿倉山登山纜車（北九州）</a></h3>
+        <span class="tagline t-c">★ 新日本三大夜景・百億美元夜景</span>
+        <p><strong>去程</strong>：博多站搭 JR 音速號特急（約 35 分）到八幡站 ➔ 站前免費接駁巴士到山麓站 ➔ 軌道纜車＋斜行電梯直接登頂，完全不需健行。</p>
+        <p><strong>時間軸</strong>：15:30 博多出發 ➔ 16:30 登頂 ➔ 約 17:25 日落魔幻時刻 ➔ 18:30 下山 ➔ 約 19:40 回博多站。</p>
+        <div class="note g">✓ 已查官網：11–3 月營業 <strong>10:00–20:00（上山末班 19:20）</strong>，12/31 與 1/1 才縮短到 17:00，<strong>1/2 照常</strong>。公休為每週二，1/2 是週六不受影響。</div>
+        <div class="note">★ 山頂氣溫比市區低約 5 度，穿 Day 2 那件防風大衣上山。出發前可先看官網「山頂のお天気」與 YouTube 即時影像確認能見度。</div>
+      </div>
+      <div class="ev key">
+        <div class="time">20:00</div>
+        <div class="lbl">晚餐 ・ 可切換</div>
+        <div id="d5-1">
+          <h3><a href="https://hakatakawaya.com/shoplist/shop/913/" target="_blank" rel="noopener">博多かわ屋（祇園店 / 白金本店）</a></h3>
+          <span class="tagline t-r">★ 元祖 Q 彈螺旋烤雞皮</span>
+          <p>反覆烘烤浸醬 6 天的工法，外酥內 Q。一人直接 5~10 支起跳，配大杯生啤酒。</p>
+        </div>
+        <div id="d5-2" style="display:none">
+          <h3><a href="https://shinjidaihakataekimaeten.owst.jp/" target="_blank" rel="noopener">新時代（博多站前店 / 天神店）</a></h3>
+          <span class="tagline t-a">★ 50 日圓「傳串」金字塔</span>
+          <p>一支只要 50 日圓，酥脆如餅乾，疊成金字塔點 6 支以上，高 CP 配生啤。</p>
+        </div>
+        <button class="swap" onclick="swap('d5')">⇄ 切換 かわ屋 / 新時代</button>
+      </div>
+      <div class="ev">
+        <div class="time">22:00</div>
+        <div class="lbl">夜間</div>
+        <h3>中洲河畔 ＋ <a href="https://www.p-world.co.jp/fukuoka/plaza-hakata.htm" target="_blank" rel="noopener">プラザ博多</a> 小鋼珠</h3>
+        <p>先走中洲水岸夜景，再回博多站筑紫口（步行 30 秒）體驗柏青哥。</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- DAY 6 -->
+  <article class="day" id="d6">
+    <div class="day-top">
+      <div class="day-no">DAY 6 ・ 01/03 (日)</div>
+      <div class="day-h"><h2>LaLaport 實物大鋼彈 ➔ 滿載賦歸</h2><span class="badge">華航 CI117</span></div>
+      <div class="day-sub">20:35 FUK ➔ 22:20 TPE ｜ 博多站地鐵到機場只要 5 分鐘</div>
+    </div>
+    <div class="tl">
+      <div class="ev">
+        <div class="time">10:00</div>
+        <div class="lbl">朝聖</div>
+        <h3><a href="https://mitsui-shopping-park.com/tw/lalaport/fukuoka/" target="_blank" rel="noopener">LaLaport 福岡</a> 實物大 ν 鋼彈</h3>
+        <p>博多站筑紫口搭直達公車約 20 分鐘。看 1:1 立像動態演出，逛 4F GUNDAM SIDE-F 限定專區。</p>
+      </div>
+      <div class="ev">
+        <div class="time">13:00</div>
+        <div class="lbl">午餐</div>
+        <h3>美食街 厚切熟成黑豚炸豬排 / 燒肉定食</h3>
+        <p>最後一餐高蛋白補滿再上飛機。</p>
+      </div>
+      <div class="ev">
+        <div class="time">17:30</div>
+        <div class="lbl">返程</div>
+        <h3>取行李 ➔ 福岡機場</h3>
+        <p>東橫 INN 取行李，地鐵空港線 2 站 5 分鐘到國內線，轉免費接駁巴士至國際航廈，搭 CI117 返台。</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ================= MUST EAT ================= -->
+<section id="musteat" class="panel">
+  <div class="block">
+    <h2>🍖 必吃清單（點一下打勾，進度會留在這台裝置）</h2>
+    <p class="lead">九道主菜串起整趟旅程 — 兩碗湯飯分開在不同日，其餘全是肉。</p>
+    <div class="cols c2">
+      <label class="chk"><input type="checkbox" data-k="e1"><div><div class="nm">60雞 CCC 蒜香炸雞</div><div class="wh">12/29 晚・釜山站草梁</div></div></label>
+      <label class="chk"><input type="checkbox" data-k="e2"><div><div class="nm">바로해장 牛肉湯飯 🥩</div><div class="wh">12/30 午・廣安里</div></div></label>
+      <label class="chk"><input type="checkbox" data-k="e3"><div><div class="nm">모퉁이족발 一人份豬腳</div><div class="wh">12/30 晚・西面</div></div></label>
+      <label class="chk"><input type="checkbox" data-k="e4"><div><div class="nm">新東亞市場 活帝王蟹</div><div class="wh">12/31 晚・南浦洞</div></div></label>
+      <label class="chk"><input type="checkbox" data-k="e5"><div><div class="nm">정짓간 米其林豬肉湯飯 🐖</div><div class="wh">01/01 午・釜山站</div></div></label>
+      <label class="chk"><input type="checkbox" data-k="e6"><div><div class="nm">極味や 黑毛和牛漢堡排</div><div class="wh">01/02 午・博多</div></div></label>
+      <label class="chk"><input type="checkbox" data-k="e7"><div><div class="nm">博多かわ屋 烤雞皮</div><div class="wh">01/02 晚・祇園／白金</div></div></label>
+      <label class="chk"><input type="checkbox" data-k="e8"><div><div class="nm">黑豚厚切炸豬排</div><div class="wh">01/03 午・LaLaport</div></div></label>
+      <label class="chk"><input type="checkbox" data-k="e9"><div><div class="nm">MAK &amp; SKEY 話題新酒</div><div class="wh">12/29 起・每晚晚酌</div></div></label>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>飲食與獨旅鐵則</h2>
+    <p class="lead">全程通用，排行程時以此為準。</p>
+    <div class="cols c4">
+      <div class="mini"><h4>原則 1</h4><div class="nm">不吃無謂澱粉</div><p>早餐輕食少碰澱粉，正餐一律肉類蛋白質為主，不為了「順便」而吃飯麵。</p></div>
+      <div class="mini"><h4>原則 2</h4><div class="nm">湯飯只吃兩碗</div><p>牛肉湯飯 = 12/30 바로해장；豬肉湯飯 = 01/01 정짓간。其餘天數不碰湯飯。</p></div>
+      <div class="mini"><h4>原則 3</h4><div class="nm">購物快狠準</div><p>每站 40–60 分鐘為上限，目標明確、試完就結帳，不逛整棟。</p></div>
+      <div class="mini"><h4>原則 4</h4><div class="nm">每晚必晚酌</div><p>燒酒、MAK &amp; SKEY、透明罐生拉格、日本大杯生啤輪番上場。</p></div>
+    </div>
+    <div class="note" style="margin-top:14px">🚫 排除：長途大牟田觀光列車、摸黑爬荒嶺山、山洞餐廳、甘川洞／海東龍宮寺／松島／五六島／機張／膠囊列車等團客景點。全程只選一人友善（單人吧台或一人份套餐）的店家。</div>
+  </div>
+</section>
+
+<!-- ================= TRANSPORT ================= -->
+<section id="transport" class="panel">
+  <div class="block">
+    <h2>🎫 機票・船票・關鍵交通</h2>
+    <p class="lead">住宿：12/29–01/01 東橫 INN 釜山站 1 號店（3 晚）｜ 01/01 船上夜宿 ｜ 01/02–01/03 東橫 INN 博多口站前（1 晚）</p>
+    <div class="tscroll">
+    <table>
+      <thead><tr><th>項目</th><th>區間</th><th>購票 / 查詢</th><th>關鍵指引</th></tr></thead>
+      <tbody>
+        <tr><td><strong>華航 CI186 / CI117</strong></td><td>桃園 ➔ 金海 ／ 福岡 ➔ 桃園</td><td>已訂妥</td><td>去程 12/29 15:40 ➔ 18:50；回程 01/03 20:35 ➔ 22:20。</td></tr>
+        <tr><td><strong>新山茶花號客輪</strong></td><td>釜山港 ➔ 博多港</td><td><a href="https://www.camellia-line.co.jp" target="_blank" rel="noopener">官方網站</a></td><td>16:30–18:30 於釜山港國際碼頭 3 樓出境大廳換實體票，20:00 前登船，22:30 啟航。</td></tr>
+        <tr><td><strong>JR 音速號特急</strong></td><td>博多站 ➔ 八幡站</td><td><a href="https://www.jrkyushu.co.jp/" target="_blank" rel="noopener">JR 九州</a> 或售票機</td><td>約 35 分鐘，可刷 IC 卡搭自由席。</td></tr>
+        <tr><td><strong>皿倉山纜車</strong></td><td>山麓站 ➔ 山頂</td><td><a href="https://www.sarakurayama-cablecar.co.jp/" target="_blank" rel="noopener">官方網站</a></td><td><strong>11–3 月 10:00–20:00（上山末班 19:20）</strong>；12/31 與 1/1 縮短至 17:00。公休每週二（假日除外）。八幡站前有免費接駁巴士。</td></tr>
+        <tr><td><strong>荒嶺山計程車</strong></td><td>廣安里／市廳站 ➔ 烽燧臺</td><td>Kakao T App</td><td>直接叫到山頂停車場（₩5,000~6,000），免爬山路。</td></tr>
+        <tr><td><strong>福岡地下鐵</strong></td><td>博多站 ➔ 福岡機場</td><td><a href="https://subway.city.fukuoka.lg.jp/cha_trad/" target="_blank" rel="noopener">官網</a></td><td>2 站 5 分鐘，可直接感應 Visa／Mastercard 進站。</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SHOPPING ================= -->
+<section id="shopping" class="panel">
+  <div class="block">
+    <h2>🛍️ 快狠準採購地圖</h2>
+    <p class="lead">每站都設時間上限 — 目標明確、試完結帳就走。</p>
+    <div class="cols c2">
+      <div class="mini">
+        <h4>01/02 ・ 40 分鐘</h4>
+        <div class="nm"><a href="https://www.yodobashi.com/ec/store/0088/" target="_blank" rel="noopener">石井運動（Yodobashi 博多 2F）</a></div>
+        <p>On 跑鞋首選。博多站筑紫口旁，整面 On / Hoka 展示牆，尺寸款式全九州最齊。4F 有 Lopia 超市。</p>
+      </div>
+      <div class="mini">
+        <h4>01/02 ・ 40 分鐘</h4>
+        <div class="nm"><a href="https://luzfukuokatenjin.com/shop/ys-road" target="_blank" rel="noopener">Y's Road 福岡天神店</a></div>
+        <p>Luz 福岡天神 B1F。九州最大公路車部品專賣，日系人身部品（車衣、風鏡、手套）齊全。</p>
+      </div>
+      <div class="mini">
+        <h4>01/02 ・ 50 分鐘（含櫛田神社）</h4>
+        <div class="nm"><a href="https://store.alpen-group.jp/alpenfukuoka/CSfStoreTop.jsp" target="_blank" rel="noopener">GOLF5 旗艦店（Alpen FUKUOKA）</a></div>
+        <p>博多運河城南館 1F。西日本超大規模高球專門店，有動態試打果嶺區，可直接免稅。</p>
+      </div>
+      <div class="mini">
+        <h4>12/31 ・ 40 分鐘</h4>
+        <div class="nm"><a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=378&lang_cd=ko" target="_blank" rel="noopener">National Geographic 光復旗艦店</a></div>
+        <p>南浦站光復路徒步街。目標：韓國限定機能羽絨外套。試穿決定就退稅走人。</p>
+      </div>
+      <div class="mini">
+        <h4>12/30 ・ 60 分鐘</h4>
+        <div class="nm">田浦咖啡街（전포 카페거리）</div>
+        <p>西面旁潮流選品聚落。鎖定 2–3 間店掃完，順便喝杯咖啡消化牛肉湯飯。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NIGHT VIEW ================= -->
+<section id="night" class="panel">
+  <div class="block">
+    <h2>🌃 雙城登高夜景（避雷版）</h2>
+    <p class="lead">兩座都不用健行，纜車或計程車直達。</p>
+    <div class="cols c2">
+      <div class="mini">
+        <div class="nm" style="color:var(--cyan)">釜山・荒嶺山烽燧臺 ｜ 12/30 16:30</div>
+        <p><strong>避雷</strong>：千萬不要從山腳摸黑爬 45 分鐘山路。</p>
+        <p style="margin-top:6px"><strong>正解</strong>：Kakao T 叫車到「荒嶺山烽燧臺停車場」（₩5,000–6,000，約 12 分鐘），下車走平坦木棧道 10 分鐘到觀景台。360 度全景＋廣安大橋。</p>
+        <div class="note">★ 冬季山頂風大極冷，防風大衣必備。</div>
+      </div>
+      <div class="mini">
+        <div class="nm" style="color:var(--rose)">北九州・皿倉山 ｜ 01/02 15:30【必去】</div>
+        <p><strong>百億美元夜景</strong>：俯瞰北九州工業港灣與若戶大橋燈火，連續兩屆日本新三大夜景都市第 1 名。</p>
+        <p style="margin-top:6px"><strong>交通</strong>：博多搭 JR 音速號 35 分到八幡站 ➔ 免費接駁巴士 ➔ 軌道纜車＋斜行電梯登頂，零健行。</p>
+        <div class="note g">✓ 營業 10:00–20:00（上山末班 19:20），1/2 照常運行，不受元旦特別時間影響。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PACHINKO ================= -->
+<section id="pachinko" class="panel">
+  <div class="block">
+    <h2>🎰 福岡小鋼珠新手秘笈</h2>
+    <p class="lead">01/02 晚上吃完烤雞皮順路體驗。</p>
+    <div class="cols c2">
+      <div class="mini">
+        <div class="nm" style="color:var(--cyan)">店家推薦</div>
+        <p><strong>1. <a href="https://www.p-world.co.jp/fukuoka/plaza-hakata.htm" target="_blank" rel="noopener">プラザ博多</a></strong>：博多站筑紫口步行 30 秒（Clio Court 飯店旁），逾 1,000 台規模，有禁菸與加熱菸專區，新手友善。</p>
+        <p style="margin-top:6px"><strong>2. 123博多店 / 玉屋本店</strong>：鄰近中洲與住吉，逛完中洲順路。</p>
+      </div>
+      <div class="mini">
+        <div class="nm" style="color:var(--amber)">新手 3 大避雷法則</div>
+        <p><strong>★ 認明「1円パチンコ」</strong>：機台面板標「1玉1円」或「1玉4円」，新手挑 1 円台，1,000 日圓換 1,000 顆鋼珠能玩很久。</p>
+        <p style="margin-top:6px"><strong>★ 怎麼開始</strong>：千圓鈔塞進機台右上角插槽 ➔ 按「玉貸」 ➔ 鋼珠流到托盤 ➔ 右手轉右下旋鈕控制彈力。</p>
+        <p style="margin-top:6px"><strong>★ 設好停損</strong>：先決定只玩 1,000–2,000 日圓，體驗鋼彈／EVA 聲光效果就收手。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>釜山・福岡跨年單人深度探索手冊 ｜ 2026.12.29 – 2027.01.03</footer>
+</div>
+
+<script>
+  // tabs
+  document.querySelectorAll('.nav button').forEach(function(b){
+    b.addEventListener('click', function(){
+      var id = b.dataset.tab;
+      document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('on'); });
+      document.querySelectorAll('.nav button').forEach(function(x){ x.classList.remove('on'); });
+      document.getElementById(id).classList.add('on');
+      b.classList.add('on');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+
+  // option swap
+  function swap(g){
+    var a = document.getElementById(g+'-1'), b = document.getElementById(g+'-2');
+    if(!a || !b) return;
+    var first = a.style.display === 'none';
+    a.style.display = first ? 'block' : 'none';
+    b.style.display = first ? 'none' : 'block';
+  }
+
+  // checklist persistence (safe if storage blocked)
+  document.querySelectorAll('.chk input').forEach(function(c){
+    var k = 'bf-' + c.dataset.k;
+    try { if (localStorage.getItem(k) === '1') c.checked = true; } catch(e){}
+    c.addEventListener('change', function(){
+      try { localStorage.setItem(k, c.checked ? '1' : '0'); } catch(e){}
+    });
+  });
+</script>
 </body>
 </html>
