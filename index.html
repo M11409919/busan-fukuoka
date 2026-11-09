@@ -138,6 +138,34 @@
   td strong{color:var(--txt)}
 
   footer{text-align:center;font-size:12px;color:var(--txt3);padding:28px 16px 0}
+
+  /* ---- maps / route / tickets ---- */
+  .maps{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 8px}
+  .maps a{font-size:12px;font-weight:700;color:#7dd3fc;background:rgba(56,189,248,.10);
+    border:1px solid rgba(56,189,248,.35);padding:3px 10px;border-radius:999px;text-decoration:none;border-bottom:1px solid rgba(56,189,248,.35)}
+  .maps a:hover{background:rgba(56,189,248,.2)}
+  .rtbtn{margin-top:10px}
+  .stp{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;padding:10px 13px;background:var(--card2);
+    border:1px solid var(--line);border-radius:10px}
+  .stp .t{font-weight:800;color:var(--cyan);min-width:46px;font-variant-numeric:tabular-nums;font-size:13px}
+  .stp .n{font-weight:800;font-size:14px}
+  .stp a.pin{font-size:12px;font-weight:700;color:#7dd3fc;border-bottom:1px dotted #7dd3fc}
+  .leg{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 2px 22px;padding:7px 0 7px 14px;
+    border-left:2px dashed var(--line2);font-size:12.5px;color:var(--txt3)}
+  .leg a.go{font-size:12px;font-weight:800;color:#3b2600;background:var(--amber);padding:3px 10px;border-radius:999px;text-decoration:none;border-bottom:none}
+  .leg a.go:hover{filter:brightness(1.1)}
+  details.tk{background:var(--card2);border:1px solid var(--line);border-radius:12px;margin:10px 0}
+  details.tk summary{cursor:pointer;padding:13px 15px;font-weight:800;font-size:14.5px;list-style:none}
+  details.tk summary::-webkit-details-marker{display:none}
+  details.tk summary::after{content:"＋";float:right;color:var(--cyan)}
+  details.tk[open] summary::after{content:"－"}
+  details.tk[open] summary{border-bottom:1px solid var(--line)}
+  details.tk .bd{padding:12px 16px 14px;font-size:13.5px;color:var(--txt2)}
+  details.tk .bd ol,details.tk .bd ul{padding-left:20px;margin:6px 0}
+  details.tk .bd li{margin:5px 0}
+  details.tk .bd a{word-break:break-all}
+  .block[id^="rt-"]{scroll-margin-top:74px}
+  .nav-inner{scroll-behavior:auto}
 </style>
 </head>
 <body>
@@ -159,7 +187,8 @@
   <div class="nav-inner wrap" style="padding-left:16px;padding-right:16px">
     <button class="on" data-tab="itinerary">📅 六日行程</button>
     <button data-tab="musteat">🍖 必吃清單</button>
-    <button data-tab="transport">🎫 交通・住宿</button>
+    <button data-tab="route">🗺️ 動線導航</button>
+    <button data-tab="transport">🎫 購票・交通</button>
     <button data-tab="shopping">🛍️ 購物</button>
     <button data-tab="night">🌃 夜景</button>
     <button data-tab="pachinko">🎰 小鋼珠</button>
@@ -186,6 +215,8 @@
       <div class="day-no">DAY 1 ・ 12/29 (二)</div>
       <div class="day-h"><h2>抵達釜山 ➔ 無澱粉炸雞初夜</h2><span class="badge">華航 CI186</span></div>
       <div class="day-sub">15:40 TPE ➔ 18:50 PUS ｜ 住宿：東橫 INN 釜山站 1 號店（連住 3 晚）</div>
+    
+      <button class="swap rtbtn" onclick="showRoute('d1')">🧭 這天動線導航</button>
     </div>
     <div class="tl">
       <div class="ev">
@@ -198,12 +229,14 @@
         <div class="time">19:40</div>
         <div class="lbl">住宿</div>
         <h3><a href="https://www.toyoko-inn.com/china/search/detail/00194" target="_blank" rel="noopener">東橫 INN 釜山站 1 號店</a></h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Busan%20Station%201" target="_blank" rel="noopener">📍 東橫 INN 釜山站 1 號店</a></div>
         <p>地鐵 1 號出口直達，快速 check-in 放妥行李。</p>
       </div>
       <div class="ev key">
         <div class="time">20:30</div>
         <div class="lbl">晚餐</div>
         <h3><a href="https://www.60chicken.com/" target="_blank" rel="noopener">60雞 (60계치킨) 草梁店</a></h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=60%EA%B3%84%EC%B9%98%ED%82%A8%20%EC%B4%88%EB%9F%89" target="_blank" rel="noopener">📍 60雞 草梁</a></div>
         <span class="tagline t-g">★ 純蛋白質・今晚不碰澱粉</span>
         <p>機上已吃飛機餐，外帶招牌 <strong>CCC 蒜香微辣脆皮炸雞</strong>，部位指定翅腿拼盤（봉/윙 combo）。</p>
       </div>
@@ -211,6 +244,7 @@
         <div class="time">21:30</div>
         <div class="lbl">晚酌</div>
         <h3>GS25 ＆ 7-Eleven 搜話題新酒</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=GS25%20%EB%B6%80%EC%82%B0%EC%97%AD" target="_blank" rel="noopener">📍 附近 GS25</a></div>
         <p><strong>「막스키」其實是喝法不是品牌</strong>：買一瓶지평막걸리＋一小瓶金賓（或任何波本），自己對著調，這才是韓國年輕人在喝的那個。超商兩樣都買得到。</p>
         <p><strong>現在更該買的</strong>：CU 프리미엄 막걸리「<strong>탁올</strong>」（500ml ₩7,900，含米量約一般 5 倍）、CU「생라임 하이볼」（500ml ₩4,500、8.3%，整個蓋子可全開）、GS25「제주 감귤 하이볼」（₩4,500，內有柑橘果肉片）。</p>
         <div class="note">★ 超商酒款換得很快，到現場直接看冰櫃有什麼新品最準 — 認明「풀오픈탭」（全開蓋）那種高球罐不會踩雷。</div>
@@ -223,7 +257,9 @@
     <div class="day-top">
       <div class="day-no">DAY 2 ・ 12/30 (三)</div>
       <div class="day-h"><h2>廣安里牛肉湯飯 ➔ 荒嶺山夜景 ➔ 一人份拐角豬腳</h2><span class="badge g">高蛋白能量日</span></div>
-      <div class="day-sub">今日兩大主菜：牛肉湯飯 ①、一人份滷豬腳。購物只排 1 小時。</div>
+      <div class="day-sub">今日主菜：牛肉湯飯、一人份滷豬腳。下午整段留白。</div>
+    
+      <button class="swap rtbtn" onclick="showRoute('d2')">🧭 這天動線導航</button>
     </div>
     <div class="tl">
       <div class="ev">
@@ -236,16 +272,18 @@
         <div class="time">11:30</div>
         <div class="lbl">午餐 ・ 牛肉湯飯</div>
         <h3>바로해장（Baro Haejang 廣安里）</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%EB%B0%94%EB%A1%9C%ED%95%B4%EC%9E%A5%20%EB%B6%80%EC%82%B0%20%EC%88%98%EC%98%81%EA%B5%AC%20%EA%B4%91%EB%82%A8%EB%A1%9C94%EB%B2%88%EA%B8%B8%202" target="_blank" rel="noopener">📍 바로해장 廣安里</a></div>
         <span class="tagline t-a">★ 必吃・소한마리 해장국</span>
         <p>整塊新鮮牛血糕＋大量牛肉，湯頭近似羅州곰탕，清爽不油膩。地鐵 2 號線廣安站。</p>
         <p><strong>地址</strong>：부산 수영구 광남로94번길 2, 101호</p>
-        <div class="note g">✓ 避澱粉點法：跟老闆說「<strong>밥 빼주세요</strong>」（不要飯），湯和肉照給，等於一碗純牛肉湯。</div>
+        <div class="note g">✓ 湯飯照吃，飯一起下去。這是你全程少數放開吃澱粉的兩餐之一。</div>
         <div class="note">⚠️ 營業時間各家資料不一（09:00–22:00 或 11:30–21:00、中休 15:30–17:30），<strong>11:30 到最保險</strong>。常態排隊，建議用 캐치테이블 遠端取號；不可外帶外送。</div>
       </div>
       <div class="ev">
         <div class="time">13:00</div>
         <div class="lbl">放空 ・ 整個下午</div>
         <h3>廣安里海灘散步 ➔ 海景咖啡廳窩著</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5" target="_blank" rel="noopener">📍 廣安里海水浴場</a><a href="https://www.google.com/maps/search/?api=1&query=%EC%BB%B5%EC%95%A4%EC%BB%B5%20%EA%B4%91%EC%95%88%EB%A6%AC" target="_blank" rel="noopener">📍 컵앤컵</a><a href="https://www.google.com/maps/search/?api=1&query=%EC%B0%A8%EC%84%A0%EC%B1%85%20%EA%B4%91%EC%95%88%EB%A6%AC" target="_blank" rel="noopener">📍 차선책</a><a href="https://www.google.com/maps/search/?api=1&query=%EB%9A%9C%EB%B2%85%EC%8A%A4%20%EA%B4%91%EC%95%88%EB%A6%AC" target="_blank" rel="noopener">📍 뚜벅스</a></div>
         <span class="tagline t-c">★ 不排行程，咖啡廳坐到想走為止</span>
         <p>餐後沿海灘走一段，白天先看一次廣安大橋，再挑一間坐下來看海、等天黑，16:00 再出發上荒嶺山。</p>
         <p><strong>컵앤컵</strong>（4–5 樓，廣安大橋視野，窗邊要搶）／<strong>차선책 本店</strong>（整面落地窗正對大橋，窗邊看運氣）／<strong>뚜벅스</strong>（7 樓海灘正對面，視野最好、價格約星巴克 1.5 倍）。</p>
@@ -255,6 +293,7 @@
         <div class="time">16:30</div>
         <div class="lbl">夜景</div>
         <h3><a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=377&lang_cd=ko" target="_blank" rel="noopener">荒嶺山烽燧臺</a></h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%ED%99%A9%EB%A0%B9%EC%82%B0%EB%B4%89%EC%88%98%EB%8C%80" target="_blank" rel="noopener">📍 荒嶺山烽燧臺</a></div>
         <p>Kakao T 叫車直上山頂停車場（₩5,000~6,000），下車走平緩木棧道 10 分鐘即達觀景台，<strong>完全不必爬山</strong>。360 度釜山全景＋廣安大橋夜色。</p>
         <div class="note">★ 山頂稜線冬季風大且極冷，務必穿防風保暖大衣。</div>
       </div>
@@ -262,6 +301,7 @@
         <div class="time">20:30</div>
         <div class="lbl">晚餐 ・ 必吃</div>
         <h3>모퉁이족발 서면본점（拐角豬蹄 西面總店）</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%EB%AA%A8%ED%89%81%EC%9D%B4%EC%A1%B1%EB%B0%9C%20%EC%84%9C%EB%A9%B4%EB%B3%B8%EC%A0%90%20%EB%B6%80%EC%82%B0%EC%A7%84%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C680%EB%B2%88%EA%B8%B8%2080-19" target="_blank" rel="noopener">📍 모퉁이족발 西面本店</a></div>
         <span class="tagline t-a">★ 一人份 Q 彈醬香滷豬腳</span>
         <p>點一人份小份豬腳，滿滿膠原蛋白與瘦肉，配燒酒微醺；也可外帶回飯店慢慢啃。</p>
         <p><strong>地址</strong>：부산 부산진구 중앙대로680번길 80-19 B동 1층</p>
@@ -276,12 +316,15 @@
       <div class="day-no">DAY 3 ・ 12/31 (四)</div>
       <div class="day-h"><h2>生日休息日 ➔ 汗蒸幕放鬆 ➔ 一人吃蟹 ➔ 敲鐘跨年</h2><span class="badge a">🎂 生日 × 跨年</span></div>
       <div class="day-sub">今天不塞行程。睡到自然醒、泡個汗蒸幕，戰力全部留給 18:30 的生日蟹宴。</div>
+    
+      <button class="swap rtbtn" onclick="showRoute('d3')">🧭 這天動線導航</button>
     </div>
     <div class="tl">
       <div class="ev">
         <div class="time">10:00</div>
         <div class="lbl">生日早晨</div>
         <h3>睡到自然醒 ➔ 釜山站／南浦洞 早餐配咖啡</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%EB%B8%8C%EB%9D%BC%EC%9A%B4%ED%95%B8%EC%A6%88%20%EB%B0%B1%EC%A0%9C%20%EB%B6%80%EC%82%B0%20%EB%8F%99%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C209%EB%B2%88%EA%B8%B8%2016" target="_blank" rel="noopener">📍 브라운핸즈 백제</a></div>
         <span class="tagline t-g">★ 不設鬧鐘、不趕景點</span>
         <p>飯店早餐或出門找間咖啡廳慢慢吃，想幾點出門就幾點出門。</p>
         <div class="note c">☕ 想在釜山站旁喝：<strong>브라운핸즈 백제（Brown Hands）</strong>，舊「百濟醫院」改建，住址 중앙대로209번길 16。</div>
@@ -290,6 +333,7 @@
         <div class="time">11:30</div>
         <div class="lbl">放鬆 ・ 2–3 小時</div>
         <h3>발리아쿠아랜드（Bali Aqua Land 汗蒸幕）</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%EB%B0%9C%EB%A6%AC%EC%95%84%EC%BF%A0%EC%95%84%EB%9E%9C%EB%93%9C%20%EB%B6%80%EC%82%B0%EC%97%AD" target="_blank" rel="noopener">📍 발리아쿠아랜드</a><a href="https://www.google.com/maps/search/?api=1&query=%EC%86%A1%EB%8F%84%ED%95%B4%EC%88%98%ED%94%BC%EC%95%84" target="_blank" rel="noopener">📍 송도해수피아（備案）</a></div>
         <span class="tagline t-c">★ 釜山站 5 號出口巷內步行約 150 公尺</span>
         <p>離飯店最近的 24 小時汗蒸幕，泡湯＋찜질房一套約 ₩12,000。可以加點<strong>搓澡（때밀이）</strong>，整個人刮乾淨再去吃蟹，生日儀式感滿分。</p>
         
@@ -299,21 +343,34 @@
         <div class="time">14:30</div>
         <div class="lbl">購物 <span class="fast">20 分鐘</span></div>
         <h3><a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=378&lang_cd=ko" target="_blank" rel="noopener">National Geographic 光復旗艦店</a></h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%EB%82%B4%EC%85%94%EB%84%90%EC%A7%80%EC%98%A4%EA%B7%B8%EB%9E%98%ED%94%BD%20%EA%B4%91%EB%B3%B5%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener">📍 National Geographic 光復店</a></div>
         <p><strong>只買一件背心</strong>。試穿、結帳、退稅，20 分鐘走人，不逛其他樓層。剩下的時間在光復路隨意亂晃到晚餐。</p>
       </div>
       <div class="ev">
         <div class="time">15:00</div>
-        <div class="lbl">咖啡 ・ 南浦洞</div>
-        <h3>光復路周邊找間烘豆咖啡店坐一下</h3>
-        <span class="tagline t-c">★ 就在買背心那一帶，不用多走路</span>
-        <p><strong>바우노바</strong>（光復路97번길 6，烘豆咖啡店）：外帶排隊多，<strong>2 樓座位反而空</strong>，位子少。</p>
-        <p><strong>그리다 부부</strong>（光復中央路 35-1）：自家深焙，多層樓的特殊空間。</p>
-        <div class="note">⚠️ 這兩間資訊來自一般評論網站，出發前確認有開。距離 18:30 蟹宴還有時間，喝完回飯店休息也行。</div>
+        <div class="lbl">南浦洞 ・ 可切換</div>
+        <div id="d3pm-1">
+          <h3>光復路周邊找間烘豆咖啡店坐一下</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%EB%B0%94%EC%9A%B0%EB%85%B8%EB%B0%94%20%EA%B4%91%EB%B3%B5%EB%A1%9C97%EB%B2%88%EA%B8%B8%206" target="_blank" rel="noopener">📍 바우노바</a><a href="https://www.google.com/maps/search/?api=1&query=%EA%B7%B8%EB%A6%AC%EB%8B%A4%20%EB%B6%80%EB%B6%80%20%EA%B4%91%EB%B3%B5%EC%A4%91%EC%95%99%EB%A1%9C%2035-1" target="_blank" rel="noopener">📍 그리다 부부</a></div>
+          <span class="tagline t-c">★ 就在買背心那一帶，不用多走路</span>
+          <p><strong>바우노바</strong>（光復路97번길 6，烘豆咖啡店）：外帶排隊多，<strong>2 樓座位反而空</strong>，位子少。</p>
+          <p><strong>그리다 부부</strong>（光復中央路 35-1）：自家深焙，多層樓的特殊空間。</p>
+          <div class="note">⚠️ 這兩間資訊來自一般評論網站，出發前確認有開。距離 18:30 蟹宴還有時間，喝完回飯店休息也行。</div>
+        </div>
+        <div id="d3pm-2" style="display:none">
+          <h3>거인통닭（巨人統雞）</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%EA%B1%B0%EC%9D%B8%ED%86%B5%EB%8B%AD%20%EB%B6%80%ED%8F%89%EB%8F%99%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener">📍 거인통닭</a></div>
+          <span class="tagline t-a">★ 號稱「釜山三大統雞」之一・先吃個半份墊胃</span>
+          <p>本店在<strong>부평동 시장內</strong>（離南浦洞、光復路很近），後來也在西面開了分店。評論提到炸雞帶一點<strong>咖哩香</strong>。</p>
+          <div class="note">⚠️ 只點小份或半隻就好，<strong>18:30 還有一整隻帝王蟹要吃</strong>。我沒查到營業時間與外帶規定，出發前確認。</div>
+        </div>
+        <button class="swap" onclick="swap('d3pm')">⇄ 切換 咖啡店 / 거인통닭</button>
       </div>
       <div class="ev must">
         <div class="time">18:30</div>
         <div class="lbl">🎂 生日大餐 ・ 必吃</div>
         <h3>新東亞水產物綜合市場 1F ｜ 보배상회（85、87 號攤）</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%EC%8B%A0%EB%8F%99%EC%95%84%EC%88%98%EC%82%B0%EB%AC%BC%EC%A2%85%ED%95%A9%EC%8B%9C%EC%9E%A5%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener">📍 新東亞水產市場</a><a href="https://www.google.com/maps/search/?api=1&query=%EB%B3%B4%EB%B0%B0%EC%83%81%ED%9A%8C%20%EC%8B%A0%EB%8F%99%EC%95%84%EC%88%98%EC%82%B0%EB%AC%BC%EC%A2%85%ED%95%A9%EC%8B%9C%EC%9E%A5" target="_blank" rel="noopener">📍 보배상회</a></div>
         <span class="tagline t-a">★ 攤位旁直接開桌現蒸</span>
         <p>告知老闆一人用餐，挑最小隻活帝王蟹（約 1.2~1.5kg）或 1 隻約 1kg 大松葉蟹，配附贈的清蒸扇貝蛤蜊與燒酒，想收尾可請店家炒<strong>蟹膏炒飯</strong>（這是澱粉，要避就淺嚐兩口或直接跳過，蟹膏拌蟹肉一樣過癮）。</p>
         <div class="note g">✓ 在攤位旁用餐免收二樓代客料理費與開桌人頭費。</div>
@@ -322,6 +379,7 @@
         <div class="time">23:30</div>
         <div class="lbl">跨年</div>
         <h3>龍頭山公園（釜山塔）市民敲鐘儀式</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%EC%9A%A9%EB%91%90%EC%82%B0%EA%B3%B5%EC%9B%90" target="_blank" rel="noopener">📍 龍頭山公園</a></div>
         <p>先漫步光復路冬季燈節，23:30 上龍頭山倒數。散場<strong>步行 20 分鐘</strong>回釜山站東橫 INN，完全避開地鐵人潮管制。</p>
       </div>
     </div>
@@ -333,21 +391,25 @@
       <div class="day-no">DAY 4 ・ 01/01 (五)</div>
       <div class="day-h"><h2>米其林正饔間 ➔ 新山茶花號夜宿出海</h2><span class="badge r">米其林必比登</span></div>
       <div class="day-sub">全程唯一一碗豬肉湯飯，吃完下午放空、傍晚登船跨海。</div>
+    
+      <button class="swap rtbtn" onclick="showRoute('d4')">🧭 這天動線導航</button>
     </div>
     <div class="tl">
       <div class="ev">
         <div class="time">09:30</div>
         <div class="lbl">退房</div>
         <h3>東橫 INN 退房・大行李寄櫃檯</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Busan%20Station%201" target="_blank" rel="noopener">📍 東橫 INN 釜山站 1 號店</a></div>
         <p>吃完早餐辦退房，行李寄放，輕裝吃湯飯＋下午放空，傍晚回來取。</p>
       </div>
       <div class="ev must">
         <div class="time">11:30</div>
         <div class="lbl">午餐 ・ 豬肉湯飯（全程唯一）</div>
         <h3><a href="https://guide.michelin.com/kr/ko/busan-region/busan_1025838/restaurant/jeongjitgan" target="_blank" rel="noopener">정짓간（正饔間 釜山站店）</a></h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%EC%A0%95%EC%A7%93%EA%B0%84%20%EB%B6%80%EC%82%B0%20%EB%8F%99%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C209%EB%B2%88%EA%B8%B8%2011" target="_blank" rel="noopener">📍 정짓간 釜山站店</a></div>
         <span class="tagline t-r">★ 米其林必比登 ｜ 2F 單人吧台座 (혼밥석)</span>
         <p><strong>地址</strong>：부산 동구 중앙대로209번길 11（舊百濟醫院旁，飯店步行 3 分鐘）</p>
-        <p><strong>必點</strong>：「義城大蒜豬肉湯飯 (의성마늘국밥)」或「松阪豬白肉套餐 (항정살 수육백반)」，湯頭濃白醇厚無腥味，個人平板點餐。<strong>避澱粉</strong>：點「항정살 수육」松阪豬切盤是純肉無飯，或湯飯跟店家說「밥 빼주세요」。</p>
+        <p><strong>必點</strong>：「義城大蒜豬肉湯飯 (의성마늘국밥)」或「松阪豬白肉套餐 (항정살 수육백반)」，湯頭濃白醇厚無腥味，個人平板點餐。湯飯連飯一起吃；想多吃肉可另加點「항정살 수육」松阪豬切盤。</p>
         <div class="note g">✓ 全釜山的豬肉湯飯就吃這一碗，其餘天數完全不碰。</div>
         <div class="note c">☕ 吃完同一條巷子走幾步就是 <strong>브라운핸즈 백제</strong>（209번길 16），想喝咖啡直接過去，不用多跑。</div>
         <div class="note">⚠️ 1/1 是韓國新正假期，部分店家會公休。出發前先用 Naver Map 查當天營業；真的沒開就改吃 12/30 那間 바로해장 或飯店附近的國밥店。</div>
@@ -356,25 +418,38 @@
         <div class="time">14:00</div>
         <div class="lbl">下午 ・ 可切換</div>
         <div id="d4-1">
-          <h3>草梁故事路（초량이바구길）＋ 168 階梯展望台</h3>
-          <span class="tagline t-c">★ 釜山站步行 5 分鐘・免費・看釜山港全景</span>
-          <p>從釜山站往山坡走，沿途是老釜山的山腹街區。<strong>168 階梯旁有免費單軌電車</strong>可以直接搭上去（不用爬），頂端「柳致環郵筒」展望台能俯瞰整個釜山港與你今晚要搭的碼頭。</p>
-          <p>戶外行程，元旦不受店家公休影響。走累了可以去 <strong>영진어묵 공감까페</strong>，窗邊看得到釜山站一帶和單軌電車。</p>
-          <div class="note">⚠️ 草梁一帶咖啡店很多資料是 2017–2019 年的，現在有沒有開要確認。</div>
+          <h3>咖啡 ➔ 超商買酒 ➔ 叫外送晚餐 ➔ 帶上船</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%EB%B8%8C%EB%9D%BC%EC%9A%B4%ED%95%B8%EC%A6%88%20%EB%B0%B1%EC%A0%9C%20%EB%B6%80%EC%82%B0%20%EB%8F%99%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C209%EB%B2%88%EA%B8%B8%2016" target="_blank" rel="noopener">📍 브라운핸즈 백제</a><a href="https://www.google.com/maps/search/?api=1&query=GS25%20%EB%B6%80%EC%82%B0%EC%97%AD" target="_blank" rel="noopener">📍 釜山站 GS25</a></div>
+          <span class="tagline t-a">★ 晚餐外送／外帶上船，船上邊泡澡邊喝</span>
+          <p><strong>14:00 咖啡</strong>：<strong>브라운핸즈 백제</strong>（정짓간同巷，209번길 16），吃完湯飯坐著喝杯咖啡。</p>
+          <p><strong>15:30 買酒＋下單</strong>：到釜山站買<strong>福都順家馬格利（복순도가 손막걸리）</strong>帶上船（未開封可帶）。同時用外送 App 叫晚餐，<strong>送到東橫 INN 櫃檯</strong>，預計 16:15 左右到。</p>
+          <div class="note">⚠️ <strong>釜山站有沒有賣복순도가，我查不到</strong>（只查到海雲台有分店資訊）。它不是一般超商常駐品，<strong>先別賭釜山站買得到</strong>。備案：GS25／CU 買 지평막걸리 或其他生馬格利，或照原計畫去超商挑高球罐。可以先在 Naver Map 搜「복순도가」看附近有沒有賣的店。</div>
+          <div class="note c">🍶 福都順家是<strong>會冒泡的氣泡馬格利</strong>，帶上船要<strong>直立放、別搖、保持冰涼</strong>（冬天放戶外袋裡即可）；開瓶前輕輕轉一下，慢慢開，不然會噴。</div>
+          <p><strong>16:15 回飯店</strong>：取寄放的行李與外送餐點，17:00 步行到碼頭。</p>
+          <div class="note c">🎁 <strong>核桃酥（복호두 Bokhodu，豆沙奶油／開心果口味）</strong>也在這段順路買，離回台灣還有 2 天，剛好買來當伴手禮。<strong>釜山站、南浦洞、西面我都查不到分店</strong>（只查到北區화명점），先在 Naver Map 搜「복호두」確認；沒有的話，釜山站一帶、南浦洞的 호두과자 攤位也買得到類似的。保存期限看包裝，想帶回台灣的選保存期長的紅豆口味。</div>
+          <p><strong>吃什麼：교촌치킨（僑村 Kyochon）</strong>。醬油蒜香脆皮是它的招牌，點<strong>오리지날／허니 系列</strong>，愛吃翅腿就點<strong>윙·봉</strong>。放 3 小時冷了也不油膩，配馬格利剛好。</p>
+          <p>外送 App 搜「교촌」，或走去釜山站附近的 교촌 店面 포장。想換口味可改 <strong>보쌈／수육</strong>（水煮豬肉）、<strong>훈제오리</strong>（煙燻鴨）。</p>
+          <div class="note">⚠️ <strong>你還沒用過民族 App（배달의민족 Baemin），出發前先在台灣試註冊</strong>，不要等到 12/29 在釜山才發現卡關。
+          <br>① 現在就下載 Baemin，用台灣手機收簡訊註冊、綁國際信用卡，走到「可以下單」那一步。
+          <br>② 不行的話改試 <strong>Coupang Eats</strong> 或專為外國人設計的 <strong>Shuttle</strong>（各來源說法不一，Baemin／Coupang Eats 有的寫要韓國號碼，有的寫外國卡可以）。
+          <br>③ 都不行就用下面的 <strong>포장（外帶）</strong> 備案，不影響行程。</div>
+          <div class="note g">✓ <strong>備案（一定行得通）</strong>：15:30 自己走去釜山站附近的店 <strong>포장（外帶）</strong>，打電話或請店員幫你包，不用 App。16:15 取行李，一起帶去碼頭。</div>
         </div>
         <div id="d4-2" style="display:none">
-          <h3>釜山站・南浦洞周邊漫遊</h3>
-          <span class="tagline t-a">★ 慵懶版：完全不跑遠</span>
+          <h3>南浦洞漫遊（光復路・BIFF 廣場）</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=BIFF%EA%B4%91%EC%9E%A5%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener">📍 南浦洞 BIFF 廣場</a></div>
+          <span class="tagline t-a">★ 慵懶版：隨意晃、不趕</span>
           <p>留在飯店周邊咖啡廳看書休息，順手買最後伴手禮，省下所有車程，時間全部拿來放空。</p>
         </div>
-        <button class="swap" onclick="swap('d4')">⇄ 切換 草梁故事路 / 周邊漫遊</button>
+        <button class="swap" onclick="swap('d4')">⇄ 切換 咖啡＋外送晚餐 / 南浦洞漫遊</button>
       </div>
       <div class="ev key">
         <div class="time">17:00</div>
         <div class="lbl">登船</div>
         <h3><a href="https://www.camellia-line.co.jp" target="_blank" rel="noopener">新山茶花號 (New Camellia)</a></h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%EB%B6%80%EC%82%B0%ED%95%AD%20%EA%B5%AD%EC%A0%9C%EC%97%AC%EA%B0%9D%ED%84%B0%EB%AF%B8%EB%84%90" target="_blank" rel="noopener">📍 釜山港國際客運碼頭</a></div>
         <p>步行至 <a href="https://www.busanpa.com/bpt/Contents.do?mCode=MN0007" target="_blank" rel="noopener">釜山港國際客運碼頭</a> 3 樓出境大廳換實體票。<strong>16:30–18:30 報到 ・ 20:00 前登船 ・ 22:30 啟航 ・ 01/02 07:30 抵博多</strong>。</p>
-        <div class="note c">★ 一人泡免費展望大浴場，甲板喝生啤酒吹海風跨越對馬海峽。</div>
+        <div class="note c">★ 一人泡免費展望大浴場，帶著外送晚餐和剛買的酒在船上慢慢吃喝，跨越對馬海峽。</div>
       </div>
     </div>
   </article>
@@ -383,20 +458,24 @@
   <article class="day" id="d5">
     <div class="day-top">
       <div class="day-no">DAY 5 ・ 01/02 (六)</div>
-      <div class="day-h"><h2>和牛漢堡排 ➔ 鋼彈 ➔ 皿倉山夜景 ➔ 天神獵酒 ➔ 烤雞皮 ➔ 中洲屋台</h2><span class="badge v">福岡滿檔日</span></div>
-      <div class="day-sub">皿倉山是不可動的軸心，其餘全部往前壓。下山後全部是酒：19:45 天神買酒、21:00 烤雞皮、22:15 中洲屋台、23:30 唐吉訶德。<strong>所有要帶回台灣的東西今晚買完、今晚裝箱。</strong></div>
+      <div class="day-h"><h2>和牛漢堡排 ➔ 天神獵酒 ➔ 皿倉山夜景 ➔ 烤雞皮 ➔ 中洲屋台</h2><span class="badge v">福岡滿檔日</span></div>
+      <div class="day-sub">皿倉山是不可動的軸心。<strong>酒商菅原只開到 19:00，所以下午先去買酒</strong>；下山後 20:00 烤雞皮、21:30 中洲屋台，23:30 去 Sunny 東比恵補貨（或改逛唐吉訶德），有補到就好，回房把行李裝好。</div>
+    
+      <button class="swap rtbtn" onclick="showRoute('d5')">🧭 這天動線導航</button>
     </div>
     <div class="tl">
       <div class="ev">
         <div class="time">07:30</div>
         <div class="lbl">抵達</div>
         <h3>博多港 ➔ <a href="https://www.toyoko-inn.com/china/search/detail/00043" target="_blank" rel="noopener">東橫 INN 博多口站前</a></h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E6%B8%AF%E5%9B%BD%E9%9A%9B%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB" target="_blank" rel="noopener">📍 博多港國際碼頭</a><a href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Hakata-guchi%20Ekimae" target="_blank" rel="noopener">📍 東橫 INN 博多口站前</a></div>
         <p>出關搭西鐵巴士（約 15 分鐘）直達博多站，先寄放大行李再開始一天。</p>
       </div>
       <div class="ev">
         <div class="time">09:30</div>
         <div class="lbl">購物 <span class="fast">30 分鐘</span></div>
         <h3><a href="https://www.yodobashi.com/ec/store/0088/" target="_blank" rel="noopener">石井運動（Yodobashi 博多 2F）｜ On 跑鞋</a></h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%A8%E3%83%89%E3%83%90%E3%82%B7%E3%82%AB%E3%83%A1%E3%83%A9%20%E3%83%9E%E3%83%AB%E3%83%81%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E5%8D%9A%E5%A4%9A" target="_blank" rel="noopener">📍 Yodobashi 博多</a></div>
         <p>博多站筑紫口旁，整面 On / Hoka 展示牆。<strong>款式已選定，進去試穿尺寸、結帳走人</strong>，30 分鐘搞定。</p>
         <div class="note">★ 記得帶護照辦免稅（滿 ¥5,000）。同棟 4F 的 Lopia 超市順眼看兩分鐘就好。</div>
       </div>
@@ -404,6 +483,7 @@
         <div class="time">10:10</div>
         <div class="lbl">咖啡 ・ 可抽菸</div>
         <h3>珈琲館ポエジー</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%E7%8F%88%E7%90%B2%E9%A4%A8%E3%83%9D%E3%82%A8%E3%82%B8%E3%83%BC%20%E5%8D%9A%E5%A4%9A" target="_blank" rel="noopener">📍 珈琲館ポエジー</a></div>
         <span class="tagline t-a">★ 全席可吸菸的昭和喫茶</span>
         <p>博多站博多口步行約 8 分鐘。跑鞋買完在這裡坐一下、抽根菸，11:00 再去吃漢堡排。</p>
         <div class="note">⚠️ 「全席可吸菸」來自 2023–2025 年的介紹文，出發前用食べログ確認。</div>
@@ -412,78 +492,93 @@
         <div class="time">11:00</div>
         <div class="lbl">午餐 ・ 必吃</div>
         <h3><a href="https://kiwamiya.com/brand_hamburger/" target="_blank" rel="noopener">極味屋（極味や 博多店 / 地下街店）</a></h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%E6%A5%B5%E5%91%B3%E3%82%84%20%E5%8D%9A%E5%A4%9A" target="_blank" rel="noopener">📍 極味や 博多</a></div>
         <span class="tagline t-a">★ 炭火黑毛和牛漢堡排</span>
         <p>博多巴士總站 1F 或博多地下街。純牛肉生肉餅放高溫鐵石上滋滋現煎，肉汁爆發，一人入座過癮。</p>
         <div class="note g">✓ 避澱粉：套餐附白飯，點餐時說「<strong>ライス少なめ</strong>」或乾脆不吃飯，專心吃肉。</div>
-        <div class="note">★ 刻意卡 11:00 開店時段入座避開排隊，才接得上下午行程與皿倉山。</div>
-      </div>
-      <div class="ev">
-        <div class="time">12:30</div>
-        <div class="lbl">下午 ・ 可切換</div>
-        <div id="d5pm-1">
-          <h3><a href="https://mitsui-shopping-park.com/tw/lalaport/fukuoka/" target="_blank" rel="noopener">LaLaport 福岡</a> 實物大 ν 鋼彈（純拍照）</h3>
-          <span class="tagline t-c">★ 1:1 立像 ・ 來回含參觀約 1.5 小時</span>
-          <p>博多站筑紫口搭直達公車約 20 分鐘。立像幾個角度拍完、4F GUNDAM SIDE-F 走一圈就撤，不逛商場。</p>
-          <p>14:30 回到博多，進飯店放戰利品、休息一下，16:00 準時出發上皿倉山。</p>
-          <div class="note c">★ 夜間牆面投影要 19:00 後才有，你今晚要上皿倉山，白天來拍立像剛好。</div>
-        </div>
-        <div id="d5pm-2" style="display:none">
-          <h3>回飯店補眠／寄放戰利品</h3>
-          <span class="tagline t-c">★ 省力版：鋼彈改天去</span>
-          <p>船上睡一晚其實沒睡飽，下午直接回飯店躺平，16:00 再出發衝夜景。</p>
-        </div>
-        <button class="swap" onclick="swap('d5pm')">⇄ 切換 鋼彈 / 回飯店休息</button>
+        <div class="note">★ 刻意卡 11:00 開店時段入座避開排隊，才趕得上 12:30 去天神買酒、15:45 出發上皿倉山。</div>
       </div>
       <div class="ev must">
-        <div class="time">16:00</div>
+        <div class="time">12:30</div>
+        <div class="lbl">🍶 獵酒 ・ 可切換</div>
+        <div id="d5pm-1">
+          <h3><a href="https://x.com/sake_sugawara" target="_blank" rel="noopener">酒商菅原（天神）</a>角打ち ＋ 帶酒回台灣</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%E9%85%92%E5%95%86%E8%8F%85%E5%8E%9F%20%E7%A6%8F%E5%B2%A1%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E6%B8%A1%E8%BE%BA%E9%80%9A5%E4%B8%81%E7%9B%AE24-30" target="_blank" rel="noopener">📍 酒商菅原</a></div>
+          <span class="tagline t-c">★ 日本酒・日本威士忌・日本紅酒＋站著喝</span>
+          <p><strong>為什麼排下午</strong>：Google 地圖顯示這間 <strong>週二至週六 11:00–19:00，週日、週一公休</strong>。01/02（週六）下午去最安全，晚上來不及；01/03 是週日整天休息。</p>
+          <p><strong>路線</strong>：吃完漢堡排從博多站搭地鐵到天神（5 分鐘），店在渡辺通 5 丁目 24-30（東カン福岡第一ビル 1F），照 Google 地圖導航走過去。12:45 到、先站著喝一杯，喝到喜歡的整瓶帶走。</p>
+          <p>14:15 離開，酒瓶放回東橫 INN，休息一下，<strong>15:45 準時出發上皿倉山</strong>。</p>
+          <div class="note c">🍗 順路在天神外帶一盒日式唐揚げ：<strong>博多とよ唐亭</strong>（新天町商店街入口附近）的「<strong>げんこつからあげ</strong>」，當喝角打ち的下酒菜。我沒查到最新營業時間。</div>
+          <div class="note">⚠️ 元旦連假期間可能有特別營業時間，出發前務必看他們官方 X 當天動態。<strong>萬一沒開或沒去</strong>：沒關係，<strong>01/03 在福岡機場國際航廈免稅店補買</strong>（出境後買，酒裝在密封袋可手提登機），或 23:30 唐吉訶德中洲店也有日本酒。</div>
+        </div>
+        <div id="d5pm-2" style="display:none">
+          <h3><a href="https://mitsui-shopping-park.com/tw/lalaport/fukuoka/" target="_blank" rel="noopener">LaLaport 福岡</a> 實物大 ν 鋼彈（純拍照）</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%89%E3%82%89%E3%81%BD%E3%83%BC%E3%81%A8%E7%A6%8F%E5%B2%A1" target="_blank" rel="noopener">📍 LaLaport 福岡</a></div>
+          <span class="tagline t-c">★ 不去酒店的替代方案 ・ 來回約 1.5 小時</span>
+          <p>博多站筑紫口搭直達公車約 20 分鐘。立像幾個角度拍完、4F GUNDAM SIDE-F 走一圈就撤，不逛商場。14:30 回到博多，15:45 出發上皿倉山。</p>
+          <div class="note">⚠️ 選這個的話，日本酒就改在 <strong>01/03 福岡機場免稅店</strong>買（或 23:30 唐吉訶德，選品比酒商菅原少）。夜間牆面投影要 19:00 後才有，白天只拍立像。</div>
+        </div>
+        <button class="swap" onclick="swap('d5pm')">⇄ 切換 酒商菅原 / 鋼彈拍照</button>
+      </div>
+      <div class="ev must">
+        <div class="time">15:45</div>
         <div class="lbl">夜景 ・ 必去不可取消</div>
         <h3><a href="https://www.sarakurayama-cablecar.co.jp/" target="_blank" rel="noopener">皿倉山登山纜車（北九州）</a></h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=JR%E5%85%AB%E5%B9%A1%E9%A7%85" target="_blank" rel="noopener">📍 JR 八幡站</a><a href="https://www.google.com/maps/search/?api=1&query=%E7%9A%BF%E5%80%89%E5%B1%B1%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%E3%82%AB%E3%83%BC%20%E5%B1%B1%E9%BA%93%E9%A7%85" target="_blank" rel="noopener">📍 皿倉山纜車 山麓站</a></div>
         <span class="tagline t-c">★ 新日本三大夜景・百億美元夜景</span>
-        <p><strong>去程</strong>：博多站搭 JR 音速號特急（約 35 分）到八幡站 ➔ 站前免費接駁巴士到山麓站 ➔ 軌道纜車＋斜行電梯直接登頂，完全不需健行。</p>
-        <p><strong>時間軸</strong>：16:00 博多出發 ➔ 17:00 登頂 ➔ 約 17:25 日落魔幻時刻 ➔ 18:15 下山（天已全黑，夜景看足）➔ 約 19:25 回博多站。</p>
+        <p><strong>去程</strong>：博多站搭 <strong>JR 鹿兒島本線往小倉方向到「八幡」</strong>（快速／普通用 IC 卡刷進出最單純）➔ 八幡站前搭<strong>免費接駁巴士到山麓站</strong>（約 10 分）➔ 纜車＋斜行電梯上山（約 10 分）。博多到山頂全程約 1 小時 10 分（路線搜尋範例，含轉乘，實際看班次）。</p>
+        <p><strong>時間軸</strong>：15:45 博多出發 ➔ 約 17:00 抵達山頂 ➔ 日落約 17:30 前後（魔幻時刻）➔ 18:15 下山 ➔ 約 19:30 回博多站，晚餐 20:00。</p>
+        <div class="note c">🎫 <strong>票價</strong>：纜車＋斜行電梯<strong>往返通票 大人 ¥1,230</strong>（官方 FAQ，2026 年 3 月資料）。<strong>接駁巴士</strong>：JR 八幡站 ➔ 山麓站<strong>免費</strong>，週六（1/2）首班 9:45；<strong>山麓站回八幡末班 20:15</strong>（11–3 月）。</div>
         <div class="note g">✓ 已查官網：11–3 月營業 <strong>10:00–20:00（上山末班 19:20）</strong>，12/31 與 1/1 才縮短到 17:00，<strong>1/2 照常</strong>。公休為每週二，1/2 是週六不受影響。</div>
         <div class="note">★ 山頂氣溫比市區低約 5 度，穿 Day 2 那件防風大衣上山。出發前可先看官網「山頂のお天気」與 YouTube 即時影像確認能見度。</div>
       </div>
-      <div class="ev must">
-        <div class="time">19:45</div>
-        <div class="lbl">🍶 獵酒 ・ 今晚一定要買完</div>
-        <h3><a href="https://x.com/sake_sugawara" target="_blank" rel="noopener">酒商菅原（天神）</a>角打ち ＋ 帶酒回台灣</h3>
-        <span class="tagline t-c">★ 日本酒・日本威士忌・日本紅酒＋站著喝</span>
-        <p>從博多站搭地鐵到天神 5 分鐘，西鐵天神站步行 2 分鐘。<strong>先站著喝一杯，喝到喜歡的整瓶帶走。</strong></p>
-        <p><strong>為什麼排今晚</strong>：最後一天不開行李，所有要托運的東西都必須今天買完、今晚裝箱。</p>
-        <div class="note">⚠️ 營業時間以店家公告為準，先看官方 X 當天動態。<strong>萬一沒開</strong>：改在 23:30 的唐吉訶德中洲店買（也有日本酒與威士忌），或博多阪急 B1F 酒賣場（約 20:00 打烊）。</div>
-      </div>
       <div class="ev key">
-        <div class="time">21:00</div>
+        <div class="time">20:00</div>
         <div class="lbl">晚餐 ・ 可切換</div>
         <div id="d5-1">
           <h3><a href="https://hakatakawaya.com/shoplist/shop/913/" target="_blank" rel="noopener">博多かわ屋（祇園店 / 白金本店）</a></h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E3%81%8B%E3%82%8F%E5%B1%8B%20%E7%A5%87%E5%9C%92%E5%BA%97" target="_blank" rel="noopener">📍 博多かわ屋 祇園</a></div>
           <span class="tagline t-r">★ 元祖 Q 彈螺旋烤雞皮</span>
           <p>反覆烘烤浸醬 6 天的工法，外酥內 Q。一人直接 5~10 支起跳，配大杯生啤酒。純皮純肉，零澱粉。</p>
         </div>
         <div id="d5-2" style="display:none">
           <h3><a href="https://shinjidaihakataekimaeten.owst.jp/" target="_blank" rel="noopener">新時代（博多站前店 / 天神店）</a></h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E6%99%82%E4%BB%A3%20%E5%8D%9A%E5%A4%9A%E9%A7%85%E5%89%8D%E5%BA%97" target="_blank" rel="noopener">📍 新時代 博多站前</a></div>
           <span class="tagline t-a">★ 50 日圓「傳串」金字塔</span>
           <p>一支只要 50 日圓，酥脆如餅乾，疊成金字塔點 6 支以上，高 CP 配生啤。</p>
         </div>
         <button class="swap" onclick="swap('d5')">⇄ 切換 かわ屋 / 新時代</button>
       </div>
       <div class="ev key">
-        <div class="time">22:15</div>
+        <div class="time">21:30</div>
         <div class="lbl">續攤 ・ 第一次來必體驗</div>
         <h3>中洲屋台（なかす屋台）</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%E4%B8%AD%E6%B4%B2%E5%B1%8B%E5%8F%B0" target="_blank" rel="noopener">📍 中洲屋台</a></div>
         <span class="tagline t-a">★ 福岡最招牌的畫面：河畔一整排路邊攤</span>
         <p>那珂川沿岸露天屋台，一個人坐吧台最自在。<strong>酒為主</strong>：生啤、燒酎、日本酒輪著點，配<strong>焼き鳥・串焼き・もつ煮込み</strong>這類純肉下酒菜。<span style="color:#fbbf24">拉麵、餃子、炒麵一律跳過</span> — 屋台的澱粉陷阱最多。</p>
         <div class="note">★ 現金為主、多數不收卡；一攤喝完就換下一攤是常態。</div>
       </div>
       <div class="ev key">
         <div class="time">23:30</div>
-        <div class="lbl">補貨 ・ 最後機會 <span class="fast">40 分鐘</span></div>
-        <h3>ドン・キホーテ 中洲店 ➔ 回飯店一次打包完</h3>
-        <span class="tagline t-g">★ 所有要帶回台灣的東西，今晚全部買齊</span>
-        <p>屋台走回飯店順路。<strong>零食、香菸</strong>（滿 ¥5,000 帶護照免稅），店內也有<strong>馬油（ソンバーユ）</strong>與洗面乳，藥妝需求同一間解決。</p>
-        <div class="note g">✓ 回房後把酒瓶、零食、香菸、藥妝<strong>全部裝進托運箱並關上</strong>。明天不再開行李。</div>
-        <div class="note">★ 中洲店深夜仍營業（多數分店 24 小時，當天先確認）。</div>
+        <div class="lbl">深夜補貨 ・ 可切換</div>
+        <div id="d5late-1">
+          <h3>Sunny（サニー）東比恵店</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%B5%E3%83%8B%E3%83%BC%20%E6%9D%B1%E6%AF%94%E6%81%B5%E5%BA%97%20%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8D%9A%E5%A4%9A%E5%8C%BA%E6%9D%B1%E6%AF%94%E6%81%B52%E4%B8%81%E7%9B%AE15-18" target="_blank" rel="noopener">📍 Sunny 東比恵店</a></div>
+          <span class="tagline t-g">★ 24 小時平價超市・零食、咖哩調理包、茶飲全補齊</span>
+          <p><strong>特色</strong>：價格親民，可以先看<strong>降價商品</strong>與<strong>應援商品</strong>，也有自有品牌（咖哩調理包、零食、茶飲，價格很划算）。</p>
+          <p><strong>位置</strong>：福岡市博多區東比恵 2-15-18，地鐵機場線<strong>東比恵站步行 4 分鐘</strong>，就在博多站的下一站，也是福岡機場與博多站的中間點。從中洲屋台叫計程車約 10 分鐘上下。</p>
+          <div class="note c">★ 這裡當作<strong>日本的主要補貨點</strong>：零食、咖哩調理包、茶飲一次買齊，沒有特別想買的也可以隨便晃。</div>
+          <div class="note">⚠️ 我<strong>查不到這間店自己的營業時間與免稅資訊</strong>（地址、24 小時、步行時間都來自你貼的貼文），出發前用 Google 地圖確認；<strong>香菸、馬油、洗面乳</strong>超市不一定有，缺的要另外在 7-Eleven、藥妝店或唐吉訶德補（可按上面的切換鈕改去唐吉訶德）。</div>
+          <div class="note g">✓ 回房後把買到的東西裝進托運箱關上，明天不再開行李。</div>
+        </div>
+        <div id="d5late-2" style="display:none">
+          <h3>ドン・キホーテ 中洲店 ➔ 回飯店打包</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%89%E3%83%B3%E3%83%BB%E3%82%AD%E3%83%9B%E3%83%BC%E3%83%86%20%E4%B8%AD%E6%B4%B2%E5%BA%97" target="_blank" rel="noopener">📍 唐吉訶德 中洲店</a></div>
+          <span class="tagline t-g">★ 屋台走回飯店順路，隨手逛、有買到就好</span>
+          <p>屋台走回飯店順路。<strong>零食、香菸</strong>（滿 ¥5,000 帶護照免稅），店內也有<strong>馬油（ソンバーユ）</strong>與洗面乳，藥妝需求同一間解決。</p>
+          <div class="note">★ 中洲店深夜仍營業（多數分店 24 小時，當天先確認）。</div>
+        </div>
+        <button class="swap" onclick="swap('d5late')">⇄ 切換 Sunny 東比恵 / 唐吉訶德中洲</button>
       </div>
     </div>
   </article>
@@ -494,25 +589,29 @@
       <div class="day-no">DAY 6 ・ 01/03 (日)</div>
       <div class="day-h"><h2>慢慢起床 ➔ 太宰府 ➔ 輕鬆收尾 ➔ 賦歸</h2><span class="badge">華航 CI117</span></div>
       <div class="day-sub">20:35 FUK ➔ 22:20 TPE ｜ <strong>今天不買東西、不開行李</strong>。只剩太宰府和一段輕鬆的下午。</div>
+    
+      <button class="swap rtbtn" onclick="showRoute('d6')">🧭 這天動線導航</button>
     </div>
     <div class="tl">
       <div class="ev">
         <div class="time">09:00</div>
         <div class="lbl">早餐</div>
         <h3>飯店早餐，慢慢吃</h3>
-        <p><strong>行李昨晚就打包好了，今天完全不用碰。</strong>酒、零食、香菸、馬油、洗面乳全在箱子裡，拉上就走。</p>
+        <p><strong>行李昨晚就打包好了，今天完全不用碰。</strong>買到的東西都在箱子裡，拉上就走。</p>
         <div class="note">⚠️ 東橫 INN 標準退房 10:00，延遲退房通常不提供。真的想晚起就前一晚先問櫃檯。</div>
       </div>
       <div class="ev">
         <div class="time">10:00</div>
         <div class="lbl">退房</div>
         <h3>退房・大行李寄櫃檯</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Hakata-guchi%20Ekimae" target="_blank" rel="noopener">📍 東橫 INN 博多口站前</a></div>
         <p>輕裝出門，傍晚回來取行李直接去機場。</p>
       </div>
       <div class="ev must">
         <div class="time">10:30</div>
         <div class="lbl">參拜 ・ 第一次來福岡必去</div>
         <h3>太宰府天滿宮</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BA%80%E5%AE%AE" target="_blank" rel="noopener">📍 太宰府天滿宮</a><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%82%B9%20%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BA%80%E5%AE%AE%E8%A1%A8%E5%8F%82%E9%81%93%E5%BA%97" target="_blank" rel="noopener">📍 星巴克 表參道店</a><a href="https://www.google.com/maps/search/?api=1&query=%E8%A5%BF%E9%89%84%E7%A6%8F%E5%B2%A1%28%E5%A4%A9%E7%A5%9E%29%E9%A7%85" target="_blank" rel="noopener">📍 西鐵福岡（天神）站</a></div>
         <span class="tagline t-a">★ 學問之神・九州最大初詣地點</span>
         <p><strong>去程（電車比巴士可靠）</strong>：地鐵博多 ➔ 天神（5 分）➔ 西鐵福岡（天神）急行到西鐵二日市（約 16 分）➔ 轉太宰府線（5 分），約 45 分鐘，<strong>11:15 抵達</strong>。</p>
         <p><strong>11:15–12:30</strong> 先走表參道參拜本殿（早點排隊人比較少）。</p>
@@ -525,6 +624,7 @@
         <div class="lbl">咖啡＋抽菸 ・ 小鋼珠有空再打</div>
         <div id="d6pm-1">
           <h3>祇園：FUK COFFEE ➔ 琥珀館</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=FUK%20COFFEE%20%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8D%9A%E5%A4%9A%E5%8C%BA%E7%A5%87%E5%9C%92%E7%94%BA6-22" target="_blank" rel="noopener">📍 FUK COFFEE 祇園</a><a href="https://www.google.com/maps/search/?api=1&query=%E7%90%A5%E7%8F%80%E9%A4%A8%20%E7%A6%8F%E5%B2%A1%20%E4%B8%8A%E5%B7%9D%E7%AB%AF" target="_blank" rel="noopener">📍 琥珀館</a></div>
           <span class="tagline t-a">★ 地鐵博多 ➔ 祇園 1 站，兩間走路串得起來</span>
           <p><strong>15:30 <a href="https://tabelog.com/fukuoka/A4001/A400101/40060713/" target="_blank" rel="noopener">FUK COFFEE</a></strong>：祇園町 6-22，櫛田神社前站步行 1 分，8:00–20:00 無休，電話 092-281-7300。招牌布丁 ¥500（加冰 +¥100），有人遇到排 20 分鐘。</p>
           <p><strong>16:15 琥珀館</strong>：上川端商店街旁的昭和喫茶，全席可吸菸，走去抽根菸收尾。櫛田神社也在這一帶。</p>
@@ -533,6 +633,7 @@
         </div>
         <div id="d6pm-2" style="display:none">
           <h3><a href="https://www.p-world.co.jp/fukuoka/plaza-hakata.htm" target="_blank" rel="noopener">プラザ博多</a> 小鋼珠打到 17:00</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%97%E3%83%A9%E3%82%B6%E5%8D%9A%E5%A4%9A" target="_blank" rel="noopener">📍 プラザ博多</a></div>
           <span class="tagline t-r">★ 筑紫口步行 30 秒・不想排咖啡就直接這個</span>
           <p>太宰府回來出筑紫口就到。認明「1円パチンコ」，1,000 日圓換 1,000 顆鋼珠，先設好停損。</p>
           <div class="note g">✓ 營業 10:00–22:45・博多區博多駅中央街 5-3・092-472-2003。純娛樂，不用提行李、不用買東西。</div>
@@ -543,7 +644,9 @@
         <div class="time">17:15</div>
         <div class="lbl">返程</div>
         <h3>櫃檯提行李 ➔ 直接去機場</h3>
+        <div class="maps"><a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%A9%BA%E6%B8%AF%20%E5%9B%BD%E9%9A%9B%E7%B7%9A%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB" target="_blank" rel="noopener">📍 福岡機場國際線航廈</a></div>
         <p><strong>行李昨晚就打包好了，提了就走，不用再開箱。</strong>地鐵空港線 2 站 5 分鐘到國內線，轉免費接駁巴士至國際航廈，搭 CI117 返台。</p>
+        <div class="note c">🍶 酒沒買到的話，出境後在<strong>國際航廈免稅店</strong>補買，酒裝密封袋可手提登機。</div>
         <div class="note">⚠️ 台灣入境免稅：酒 <strong>1 公升</strong>（滿 20 歲、不限瓶數）、菸 <strong>200 支</strong>。超過要申報。</div>
       </div>
     </div>
@@ -554,6 +657,7 @@
 <section id="musteat" class="panel">
   <div class="block">
     <h2>🍖 必吃清單（點一下打勾，進度會留在這台裝置）</h2>
+    <div class="note" style="margin-bottom:12px">📱 <strong>出發前待辦</strong>：先在台灣試註冊 <strong>배달의민족（民族 App）</strong>，確認台灣手機＋信用卡能下單，01/01 的外送晚餐要用。</div>
     <p class="lead">主菜串起整趟旅程 — 兩碗湯飯分開在不同日，其餘全是肉。</p>
     <div class="cols c2">
       <label class="chk"><input type="checkbox" data-k="e1"><div><div class="nm">60雞 CCC 蒜香炸雞</div><div class="wh">12/29 晚・釜山站草梁</div></div></label>
@@ -563,10 +667,30 @@
       <label class="chk"><input type="checkbox" data-k="e5"><div><div class="nm">정짓간 米其林豬肉湯飯 🐖</div><div class="wh">01/01 午・釜山站</div></div></label>
       <label class="chk"><input type="checkbox" data-k="e6"><div><div class="nm">極味や 黑毛和牛漢堡排</div><div class="wh">01/02 午・博多</div></div></label>
       <label class="chk"><input type="checkbox" data-k="e7"><div><div class="nm">博多かわ屋 烤雞皮</div><div class="wh">01/02 晚・祇園／白金</div></div></label>
-      <label class="chk"><input type="checkbox" data-k="e8"><div><div class="nm">中津からあげ（炸雞不配飯）</div><div class="wh">01/02 19:45・天神</div></div></label>
+      <label class="chk"><input type="checkbox" data-k="e8"><div><div class="nm">中津からあげ（炸雞不配飯）</div><div class="wh">01/02 12:45・天神</div></div></label>
       <label class="chk"><input type="checkbox" data-k="e9"><div><div class="nm">막스키（지평막걸리 × 波本）自己調</div><div class="wh">12/29 起・每晚晚酌</div></div></label>
-      <label class="chk"><input type="checkbox" data-k="e10"><div><div class="nm">日本酒帶回台灣 🍶</div><div class="wh">01/02 19:45・天神 酒商菅原</div></div></label>
-      <label class="chk"><input type="checkbox" data-k="e11"><div><div class="nm">酒商菅原 角打ち 喝一杯 🍶</div><div class="wh">01/02 19:45・天神</div></div></label>
+      <label class="chk"><input type="checkbox" data-k="e10"><div><div class="nm">日本酒帶回台灣 🍶</div><div class="wh">01/02 12:45・天神 酒商菅原</div></div></label>
+      <label class="chk"><input type="checkbox" data-k="e12"><div><div class="nm">교촌치킨（僑村）🍗</div><div class="wh">01/01 晚・外送上船</div></div></label>
+      <label class="chk"><input type="checkbox" data-k="e13"><div><div class="nm">거인통닭 ／ 博多とよ唐亭 🍗</div><div class="wh">12/31 午後 ／ 01/02 天神</div></div></label>
+      <label class="chk"><input type="checkbox" data-k="e14"><div><div class="nm">복호두 核桃酥（伴手禮）🎁</div><div class="wh">01/01 午後・釜山站一帶</div></div></label>
+      <label class="chk"><input type="checkbox" data-k="e11"><div><div class="nm">酒商菅原 角打ち 喝一杯 🍶</div><div class="wh">01/02 12:45・天神</div></div></label>
+    </div>
+  </div>
+
+  <div class="block" style="border-color:#f97316">
+    <h2>🍗 炸雞巡禮（一定要吃好幾間）</h2>
+    <p class="lead">炸雞不算澱粉，盡量吃。韓國三間＋日本一間，順路就吃。</p>
+    <div class="tscroll">
+    <table>
+      <thead><tr><th>日期</th><th>店</th><th>怎麼吃</th></tr></thead>
+      <tbody>
+        <tr><td><strong>12/29 晚</strong></td><td><strong>60雞（60계치킨）草梁店</strong></td><td>CCC 蒜香微辣、翅腿拼盤，外帶回飯店配酒</td></tr>
+        <tr><td><strong>12/31 15:00</strong></td><td><strong>거인통닭</strong>（부평동 시장）</td><td>可切換，半份墊胃，晚上還要吃帝王蟹</td></tr>
+        <tr><td><strong>01/01 晚</strong></td><td><strong>교촌치킨（僑村）</strong></td><td>外送或外帶上船，配福都順家馬格利</td></tr>
+        <tr><td><strong>01/02 午後</strong></td><td><strong>博多とよ唐亭</strong>（天神）</td><td>げんこつからあげ，外帶當角打ち下酒菜</td></tr>
+        <tr><td><strong>01/02 晚</strong></td><td><strong>博多かわ屋</strong></td><td>烤雞皮，不算炸雞但同樣是雞，一起算進巡禮</td></tr>
+      </tbody>
+    </table>
     </div>
   </div>
 
@@ -580,8 +704,8 @@
         <tr><td><strong>12/29 二</strong></td><td>지평막걸리 × 波本自己調「막스키」／韓式高球罐</td><td>超商買回東橫 INN 房間，配 60雞炸雞</td></tr>
         <tr><td><strong>12/30 三</strong></td><td>真露燒酒</td><td>西面 모퉁이족발，配一人份滷豬腳</td></tr>
         <tr><td><strong>12/31 四 🎂</strong></td><td>燒酒（攤位附贈）</td><td>新東亞市場攤位旁，配現蒸帝王蟹；跨年前再買一罐上龍頭山</td></tr>
-        <tr><td><strong>01/01 五</strong></td><td>船上生啤酒</td><td>新山茶花號甲板，泡完展望大浴場吹海風喝</td></tr>
-        <tr><td><strong>01/02 六</strong></td><td>角打ち試飲（並把酒買回台灣）➔ 大杯生啤 ➔ 屋台燒酎／日本酒</td><td>天神 酒商菅原 ➔ かわ屋 ➔ 中洲屋台（這趟的大夜）</td></tr>
+        <tr><td><strong>01/01 五</strong></td><td>超商買的酒＋下酒菜（未開封即可帶上船）</td><td>新山茶花號，泡完展望大浴場後慢慢喝</td></tr>
+        <tr><td><strong>01/02 六</strong></td><td>角打ち試飲（並把酒買回台灣）➔ 大杯生啤 ➔ 屋台燒酎／日本酒</td><td>午後 天神 酒商菅原 ➔ 晚上 かわ屋 ➔ 中洲屋台（這趟的大夜）</td></tr>
         <tr><td><strong>01/03 日</strong></td><td>機場登機前一杯（行李已打包，不再採買）</td><td>福岡機場國際航廈</td></tr>
       </tbody>
     </table>
@@ -597,8 +721,8 @@
       <tbody>
         <tr><td><strong>12/30 13:00</strong></td><td>廣安里：컵앤컵 ／ 차선책 ／ 뚜벅스</td><td>海雲台 공간미 不在動線上，順路才去</td></tr>
         <tr><td><strong>12/31 10:00</strong></td><td>브라운핸즈 백제（釜山站旁）</td><td>舊百濟醫院改建</td></tr>
-        <tr><td><strong>12/31 15:00</strong></td><td>바우노바 ／ 그리다 부부（南浦洞）</td><td>바우노바 2 樓座位較空</td></tr>
-        <tr><td><strong>01/01 午後</strong></td><td>브라운핸즈 백제 ／ 영진어묵 공감까페（草梁）</td><td>정짓간同巷；草梁資料較舊</td></tr>
+        <tr><td><strong>12/31 15:00</strong></td><td>바우노바 ／ 그리다 부부（南浦洞）</td><td>바우노바 2 樓座位較空；也可切換成 거인통닭</td></tr>
+        <tr><td><strong>01/01 14:00</strong></td><td>브라운핸즈 백제（釜山站旁）</td><td>정짓간同巷</td></tr>
         <tr><td><strong>01/02 10:10</strong></td><td>珈琲館ポエジー（博多）</td><td>全席可吸菸</td></tr>
         <tr><td><strong>01/03 12:30</strong></td><td>星巴克 太宰府天滿宮表參道店</td><td>隈研吾設計，8:00–20:00</td></tr>
         <tr><td><strong>01/03 15:30</strong></td><td>FUK COFFEE ➔ 琥珀館（祇園）</td><td>琥珀館可吸菸</td></tr>
@@ -612,7 +736,7 @@
     <p class="lead">全程通用，排行程時以此為準。</p>
     <div class="cols c4">
       <div class="mini"><h4>原則 1</h4><div class="nm">酒是主軸，吃是配角</div><p>每一餐先想「這家配什麼酒」。沒胃口就少吃甚至不吃，肚子留給酒 — 這趟的主線是喝。</p></div>
-      <div class="mini"><h4>原則 2</h4><div class="nm">盡量吃肉，澱粉能閃就閃</div><p>日本到處是飯麵餃子拉麵 — 一律跳過，改點串燒、烤物、唐揚げ、もつ煮。湯飯一句「밥 빼주세요」就能免飯。</p></div>
+      <div class="mini"><h4>原則 2</h4><div class="nm">盡量吃肉，澱粉能閃就閃</div><p>日本到處是飯麵餃子拉麵 — 一律跳過，改點串燒、烤物、唐揚げ、もつ煮。<strong>兩碗湯飯例外，飯照吃。</strong></p></div>
       <div class="mini"><h4>原則 3</h4><div class="nm">湯飯只吃兩碗</div><p>牛肉湯飯 = 12/30 바로해장；豬肉湯飯 = 01/01 정짓간。其餘天數完全不碰。</p></div>
       <div class="mini"><h4>原則 4</h4><div class="nm">早餐飯店解決・購物快狠準</div><p>六天住宿都含早餐，早上不另外排。購物：鞋 30 分、背心 20 分、唐吉訶德 40 分，目標明確就走。</p></div>
     </div>
@@ -621,6 +745,113 @@
 </section>
 
 <!-- ================= TRANSPORT ================= -->
+<section id="route" class="panel">
+  <div class="block">
+    <h2>🗺️ 每日動線導航</h2>
+    <p class="lead">每一站有 📍 地圖連結；兩站之間的黃色「導航」按鈕，會用 Google 地圖算當下最適合的路線（手機會直接開地圖 App）。</p>
+  </div>
+  <div class="block" id="rt-d1">
+    <h2>12/29 (二) Day 1 ・ 抵達釜山</h2>
+    <div class="stp"><span class="t">18:50</span><span class="n">金海國際機場</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%EA%B9%80%ED%95%B4%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%EA%B9%80%ED%95%B4%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD&destination=Toyoko%20Inn%20Busan%20Station%201&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>輕軌＋地鐵（常見走法：沙上轉 2 號線、西面轉 1 號線到釜山站），行李多可直接計程車約 ₩18,000；以導航為準</span></div>
+    <div class="stp"><span class="t">19:40</span><span class="n">東橫 INN 釜山站 1 號店</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Busan%20Station%201" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=Toyoko%20Inn%20Busan%20Station%201&destination=60%EA%B3%84%EC%B9%98%ED%82%A8%20%EC%B4%88%EB%9F%89&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>短程，步行或計程車</span></div>
+    <div class="stp"><span class="t">20:30</span><span class="n">60雞 草梁</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=60%EA%B3%84%EC%B9%98%ED%82%A8%20%EC%B4%88%EB%9F%89" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=60%EA%B3%84%EC%B9%98%ED%82%A8%20%EC%B4%88%EB%9F%89&destination=GS25%20%EB%B6%80%EC%82%B0%EC%97%AD&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>步行外帶回飯店</span></div>
+    <div class="stp"><span class="t">21:30</span><span class="n">附近 GS25（買酒）</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=GS25%20%EB%B6%80%EC%82%B0%EC%97%AD" target="_blank" rel="noopener">📍 地圖</a></div>
+  </div>
+  <div class="block" id="rt-d2">
+    <h2>12/30 (三) Day 2 ・ 廣安里 ➔ 荒嶺山 ➔ 西面</h2>
+    <div class="stp"><span class="t">08:30</span><span class="n">東橫 INN 釜山站 1 號店</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Busan%20Station%201" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=Toyoko%20Inn%20Busan%20Station%201&destination=%EB%B0%94%EB%A1%9C%ED%95%B4%EC%9E%A5%20%EB%B6%80%EC%82%B0%20%EC%88%98%EC%98%81%EA%B5%AC%20%EA%B4%91%EB%82%A8%EB%A1%9C94%EB%B2%88%EA%B8%B8%202&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>1 號線到西面，轉 2 號線到廣安站（以導航為準）</span></div>
+    <div class="stp"><span class="t">11:30</span><span class="n">바로해장 廣安里</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%EB%B0%94%EB%A1%9C%ED%95%B4%EC%9E%A5%20%EB%B6%80%EC%82%B0%20%EC%88%98%EC%98%81%EA%B5%AC%20%EA%B4%91%EB%82%A8%EB%A1%9C94%EB%B2%88%EA%B8%B8%202" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%EB%B0%94%EB%A1%9C%ED%95%B4%EC%9E%A5%20%EB%B6%80%EC%82%B0%20%EC%88%98%EC%98%81%EA%B5%AC%20%EA%B4%91%EB%82%A8%EB%A1%9C94%EB%B2%88%EA%B8%B8%202&destination=%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>步行</span></div>
+    <div class="stp"><span class="t">13:00</span><span class="n">廣安里海灘・咖啡廳</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%EA%B4%91%EC%95%88%EB%A6%AC%ED%95%B4%EC%88%98%EC%9A%95%EC%9E%A5&destination=%ED%99%A9%EB%A0%B9%EC%82%B0%EB%B4%89%EC%88%98%EB%8C%80&travelmode=driving" target="_blank" rel="noopener">🚕 計程車 導航</a><span>Kakao T／計程車直達山頂停車場，車資以 App 為準</span></div>
+    <div class="stp"><span class="t">16:30</span><span class="n">荒嶺山烽燧臺</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%ED%99%A9%EB%A0%B9%EC%82%B0%EB%B4%89%EC%88%98%EB%8C%80" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%ED%99%A9%EB%A0%B9%EC%82%B0%EB%B4%89%EC%88%98%EB%8C%80&destination=%EB%AA%A8%ED%89%81%EC%9D%B4%EC%A1%B1%EB%B0%9C%20%EC%84%9C%EB%A9%B4%EB%B3%B8%EC%A0%90%20%EB%B6%80%EC%82%B0%EC%A7%84%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C680%EB%B2%88%EA%B8%B8%2080-19&travelmode=driving" target="_blank" rel="noopener">🚕 計程車 導航</a><span>下山叫計程車到西面</span></div>
+    <div class="stp"><span class="t">20:30</span><span class="n">모퉁이족발 西面本店</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%EB%AA%A8%ED%89%81%EC%9D%B4%EC%A1%B1%EB%B0%9C%20%EC%84%9C%EB%A9%B4%EB%B3%B8%EC%A0%90%20%EB%B6%80%EC%82%B0%EC%A7%84%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C680%EB%B2%88%EA%B8%B8%2080-19" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%EB%AA%A8%ED%89%81%EC%9D%B4%EC%A1%B1%EB%B0%9C%20%EC%84%9C%EB%A9%B4%EB%B3%B8%EC%A0%90%20%EB%B6%80%EC%82%B0%EC%A7%84%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C680%EB%B2%88%EA%B8%B8%2080-19&destination=Toyoko%20Inn%20Busan%20Station%201&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>西面搭 1 號線回釜山站</span></div>
+    <div class="stp"><span class="t">回程</span><span class="n">東橫 INN 釜山站 1 號店</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Busan%20Station%201" target="_blank" rel="noopener">📍 地圖</a></div>
+  </div>
+  <div class="block" id="rt-d3">
+    <h2>12/31 (四) Day 3 ・ 生日休息日</h2>
+    <div class="stp"><span class="t">10:00</span><span class="n">東橫 INN（早餐，咖啡可去 브라운핸즈 백제）</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Busan%20Station%201" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=Toyoko%20Inn%20Busan%20Station%201&destination=%EB%B0%9C%EB%A6%AC%EC%95%84%EC%BF%A0%EC%95%84%EB%9E%9C%EB%93%9C%20%EB%B6%80%EC%82%B0%EC%97%AD&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>步行約 150 公尺（釜山站 5 號出口巷內）</span></div>
+    <div class="stp"><span class="t">11:30</span><span class="n">발리아쿠아랜드 汗蒸幕</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%EB%B0%9C%EB%A6%AC%EC%95%84%EC%BF%A0%EC%95%84%EB%9E%9C%EB%93%9C%20%EB%B6%80%EC%82%B0%EC%97%AD" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%EB%B0%9C%EB%A6%AC%EC%95%84%EC%BF%A0%EC%95%84%EB%9E%9C%EB%93%9C%20%EB%B6%80%EC%82%B0%EC%97%AD&destination=%EB%82%B4%EC%85%94%EB%84%90%EC%A7%80%EC%98%A4%EA%B7%B8%EB%9E%98%ED%94%BD%20%EA%B4%91%EB%B3%B5%20%EB%B6%80%EC%82%B0&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>1 號線到南浦站（以導航為準）</span></div>
+    <div class="stp"><span class="t">14:30</span><span class="n">National Geographic 光復店</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%EB%82%B4%EC%85%94%EB%84%90%EC%A7%80%EC%98%A4%EA%B7%B8%EB%9E%98%ED%94%BD%20%EA%B4%91%EB%B3%B5%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%EB%82%B4%EC%85%94%EB%84%90%EC%A7%80%EC%98%A4%EA%B7%B8%EB%9E%98%ED%94%BD%20%EA%B4%91%EB%B3%B5%20%EB%B6%80%EC%82%B0&destination=%EB%B0%94%EC%9A%B0%EB%85%B8%EB%B0%94%20%EA%B4%91%EB%B3%B5%EB%A1%9C97%EB%B2%88%EA%B8%B8%206&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>光復路一帶步行</span></div>
+    <div class="stp"><span class="t">15:00</span><span class="n">바우노바（咖啡）</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%EB%B0%94%EC%9A%B0%EB%85%B8%EB%B0%94%20%EA%B4%91%EB%B3%B5%EB%A1%9C97%EB%B2%88%EA%B8%B8%206" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%EB%B0%94%EC%9A%B0%EB%85%B8%EB%B0%94%20%EA%B4%91%EB%B3%B5%EB%A1%9C97%EB%B2%88%EA%B8%B8%206&destination=%EC%8B%A0%EB%8F%99%EC%95%84%EC%88%98%EC%82%B0%EB%AC%BC%EC%A2%85%ED%95%A9%EC%8B%9C%EC%9E%A5%20%EB%B6%80%EC%82%B0&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>往新東亞市場，步行或 1 號線 1 站（南浦 ➔ 자갈치）</span></div>
+    <div class="stp"><span class="t">18:30</span><span class="n">新東亞市場 보배상회</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%EC%8B%A0%EB%8F%99%EC%95%84%EC%88%98%EC%82%B0%EB%AC%BC%EC%A2%85%ED%95%A9%EC%8B%9C%EC%9E%A5%20%EB%B6%80%EC%82%B0" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%EC%8B%A0%EB%8F%99%EC%95%84%EC%88%98%EC%82%B0%EB%AC%BC%EC%A2%85%ED%95%A9%EC%8B%9C%EC%9E%A5%20%EB%B6%80%EC%82%B0&destination=%EC%9A%A9%EB%91%90%EC%82%B0%EA%B3%B5%EC%9B%90&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>去龍頭山公園，步行或計程車</span></div>
+    <div class="stp"><span class="t">23:30</span><span class="n">龍頭山公園（釜山塔）</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%EC%9A%A9%EB%91%90%EC%82%B0%EA%B3%B5%EC%9B%90" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%EC%9A%A9%EB%91%90%EC%82%B0%EA%B3%B5%EC%9B%90&destination=Toyoko%20Inn%20Busan%20Station%201&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>散場步行約 20 分鐘回飯店，避開地鐵人潮管制</span></div>
+    <div class="stp"><span class="t">回程</span><span class="n">東橫 INN 釜山站 1 號店</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Busan%20Station%201" target="_blank" rel="noopener">📍 地圖</a></div>
+  </div>
+  <div class="block" id="rt-d4">
+    <h2>01/01 (五) Day 4 ・ 退房 ➔ 登船</h2>
+    <div class="stp"><span class="t">09:30</span><span class="n">東橫 INN 釜山站 1 號店（退房）</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Busan%20Station%201" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=Toyoko%20Inn%20Busan%20Station%201&destination=%EC%A0%95%EC%A7%93%EA%B0%84%20%EB%B6%80%EC%82%B0%20%EB%8F%99%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C209%EB%B2%88%EA%B8%B8%2011&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>步行約 3 分鐘</span></div>
+    <div class="stp"><span class="t">11:30</span><span class="n">정짓간 釜山站店</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%EC%A0%95%EC%A7%93%EA%B0%84%20%EB%B6%80%EC%82%B0%20%EB%8F%99%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C209%EB%B2%88%EA%B8%B8%2011" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%EC%A0%95%EC%A7%93%EA%B0%84%20%EB%B6%80%EC%82%B0%20%EB%8F%99%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C209%EB%B2%88%EA%B8%B8%2011&destination=%EB%B8%8C%EB%9D%BC%EC%9A%B4%ED%95%B8%EC%A6%88%20%EB%B0%B1%EC%A0%9C%20%EB%B6%80%EC%82%B0%20%EB%8F%99%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C209%EB%B2%88%EA%B8%B8%2016&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>同一條巷子</span></div>
+    <div class="stp"><span class="t">14:00</span><span class="n">브라운핸즈 백제（咖啡）</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%EB%B8%8C%EB%9D%BC%EC%9A%B4%ED%95%B8%EC%A6%88%20%EB%B0%B1%EC%A0%9C%20%EB%B6%80%EC%82%B0%20%EB%8F%99%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C209%EB%B2%88%EA%B8%B8%2016" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%EB%B8%8C%EB%9D%BC%EC%9A%B4%ED%95%B8%EC%A6%88%20%EB%B0%B1%EC%A0%9C%20%EB%B6%80%EC%82%B0%20%EB%8F%99%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C209%EB%B2%88%EA%B8%B8%2016&destination=GS25%20%EB%B6%80%EC%82%B0%EC%97%AD&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>步行</span></div>
+    <div class="stp"><span class="t">15:30</span><span class="n">釜山站 GS25（買酒）</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=GS25%20%EB%B6%80%EC%82%B0%EC%97%AD" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=GS25%20%EB%B6%80%EC%82%B0%EC%97%AD&destination=Toyoko%20Inn%20Busan%20Station%201&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>回飯店取行李與外送</span></div>
+    <div class="stp"><span class="t">16:15</span><span class="n">東橫 INN 釜山站 1 號店（取行李）</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Busan%20Station%201" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=Toyoko%20Inn%20Busan%20Station%201&destination=%EB%B6%80%EC%82%B0%ED%95%AD%20%EA%B5%AD%EC%A0%9C%EC%97%AC%EA%B0%9D%ED%84%B0%EB%AF%B8%EB%84%90&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>步行到碼頭</span></div>
+    <div class="stp"><span class="t">17:00</span><span class="n">釜山港國際客運碼頭（3 樓換票）</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%EB%B6%80%EC%82%B0%ED%95%AD%20%EA%B5%AD%EC%A0%9C%EC%97%AC%EA%B0%9D%ED%84%B0%EB%AF%B8%EB%84%90" target="_blank" rel="noopener">📍 地圖</a></div>
+  </div>
+  <div class="block" id="rt-d5">
+    <h2>01/02 (六) Day 5 ・ 福岡滿檔日</h2>
+    <div class="stp"><span class="t">07:30</span><span class="n">博多港國際碼頭</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E6%B8%AF%E5%9B%BD%E9%9A%9B%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%E5%8D%9A%E5%A4%9A%E6%B8%AF%E5%9B%BD%E9%9A%9B%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB&destination=Toyoko%20Inn%20Hakata-guchi%20Ekimae&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>西鐵巴士約 15 分直達博多站</span></div>
+    <div class="stp"><span class="t">08:30</span><span class="n">東橫 INN 博多口站前（寄行李）</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Hakata-guchi%20Ekimae" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=Toyoko%20Inn%20Hakata-guchi%20Ekimae&destination=%E3%83%A8%E3%83%89%E3%83%90%E3%82%B7%E3%82%AB%E3%83%A1%E3%83%A9%20%E3%83%9E%E3%83%AB%E3%83%81%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E5%8D%9A%E5%A4%9A&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>步行</span></div>
+    <div class="stp"><span class="t">09:30</span><span class="n">Yodobashi 博多（On 跑鞋）</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%E3%83%A8%E3%83%89%E3%83%90%E3%82%B7%E3%82%AB%E3%83%A1%E3%83%A9%20%E3%83%9E%E3%83%AB%E3%83%81%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E5%8D%9A%E5%A4%9A" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%E3%83%A8%E3%83%89%E3%83%90%E3%82%B7%E3%82%AB%E3%83%A1%E3%83%A9%20%E3%83%9E%E3%83%AB%E3%83%81%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E5%8D%9A%E5%A4%9A&destination=%E7%8F%88%E7%90%B2%E9%A4%A8%E3%83%9D%E3%82%A8%E3%82%B8%E3%83%BC%20%E5%8D%9A%E5%A4%9A&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>步行</span></div>
+    <div class="stp"><span class="t">10:10</span><span class="n">珈琲館ポエジー</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%E7%8F%88%E7%90%B2%E9%A4%A8%E3%83%9D%E3%82%A8%E3%82%B8%E3%83%BC%20%E5%8D%9A%E5%A4%9A" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%E7%8F%88%E7%90%B2%E9%A4%A8%E3%83%9D%E3%82%A8%E3%82%B8%E3%83%BC%20%E5%8D%9A%E5%A4%9A&destination=%E6%A5%B5%E5%91%B3%E3%82%84%20%E5%8D%9A%E5%A4%9A&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>步行</span></div>
+    <div class="stp"><span class="t">11:00</span><span class="n">極味や 博多</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%E6%A5%B5%E5%91%B3%E3%82%84%20%E5%8D%9A%E5%A4%9A" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%E6%A5%B5%E5%91%B3%E3%82%84%20%E5%8D%9A%E5%A4%9A&destination=%E9%85%92%E5%95%86%E8%8F%85%E5%8E%9F%20%E7%A6%8F%E5%B2%A1%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E6%B8%A1%E8%BE%BA%E9%80%9A5%E4%B8%81%E7%9B%AE24-30&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>地鐵空港線到天神再步行（以導航為準）</span></div>
+    <div class="stp"><span class="t">12:30</span><span class="n">酒商菅原（天神）</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%E9%85%92%E5%95%86%E8%8F%85%E5%8E%9F%20%E7%A6%8F%E5%B2%A1%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E6%B8%A1%E8%BE%BA%E9%80%9A5%E4%B8%81%E7%9B%AE24-30" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%E9%85%92%E5%95%86%E8%8F%85%E5%8E%9F%20%E7%A6%8F%E5%B2%A1%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E6%B8%A1%E8%BE%BA%E9%80%9A5%E4%B8%81%E7%9B%AE24-30&destination=Toyoko%20Inn%20Hakata-guchi%20Ekimae&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>回飯店放酒</span></div>
+    <div class="stp"><span class="t">14:45</span><span class="n">東橫 INN 博多口站前</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Hakata-guchi%20Ekimae" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=Toyoko%20Inn%20Hakata-guchi%20Ekimae&destination=JR%E5%85%AB%E5%B9%A1%E9%A7%85&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>JR 鹿兒島本線往小倉方向到八幡（以導航為準）</span></div>
+    <div class="stp"><span class="t">15:45</span><span class="n">JR 八幡站</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=JR%E5%85%AB%E5%B9%A1%E9%A7%85" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=JR%E5%85%AB%E5%B9%A1%E9%A7%85&destination=%E7%9A%BF%E5%80%89%E5%B1%B1%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%E3%82%AB%E3%83%BC%20%E5%B1%B1%E9%BA%93%E9%A7%85&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>站前免費接駁巴士約 10 分到山麓站（導航不一定顯示接駁巴士）</span></div>
+    <div class="stp"><span class="t">17:00</span><span class="n">皿倉山纜車 山麓站</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%E7%9A%BF%E5%80%89%E5%B1%B1%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%E3%82%AB%E3%83%BC%20%E5%B1%B1%E9%BA%93%E9%A7%85" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%E7%9A%BF%E5%80%89%E5%B1%B1%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%E3%82%AB%E3%83%BC%20%E5%B1%B1%E9%BA%93%E9%A7%85&destination=JR%E5%8D%9A%E5%A4%9A%E9%A7%85&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>下山後坐接駁巴士回八幡、JR 回博多；山麓站末班 20:15</span></div>
+    <div class="stp"><span class="t">19:30</span><span class="n">博多站</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=JR%E5%8D%9A%E5%A4%9A%E9%A7%85" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=JR%E5%8D%9A%E5%A4%9A%E9%A7%85&destination=%E5%8D%9A%E5%A4%9A%E3%81%8B%E3%82%8F%E5%B1%8B%20%E7%A5%87%E5%9C%92%E5%BA%97&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>去祇園吃烤雞皮</span></div>
+    <div class="stp"><span class="t">20:00</span><span class="n">博多かわ屋 祇園</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E3%81%8B%E3%82%8F%E5%B1%8B%20%E7%A5%87%E5%9C%92%E5%BA%97" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%E5%8D%9A%E5%A4%9A%E3%81%8B%E3%82%8F%E5%B1%8B%20%E7%A5%87%E5%9C%92%E5%BA%97&destination=%E4%B8%AD%E6%B4%B2%E5%B1%8B%E5%8F%B0&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>去中洲屋台</span></div>
+    <div class="stp"><span class="t">21:30</span><span class="n">中洲屋台</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%AD%E6%B4%B2%E5%B1%8B%E5%8F%B0" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%E4%B8%AD%E6%B4%B2%E5%B1%8B%E5%8F%B0&destination=%E3%82%B5%E3%83%8B%E3%83%BC%20%E6%9D%B1%E6%AF%94%E6%81%B5%E5%BA%97%20%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8D%9A%E5%A4%9A%E5%8C%BA%E6%9D%B1%E6%AF%94%E6%81%B52%E4%B8%81%E7%9B%AE15-18&travelmode=driving" target="_blank" rel="noopener">🚕 計程車 導航</a><span>計程車去東比恵，約 10 分鐘上下</span></div>
+    <div class="stp"><span class="t">23:30</span><span class="n">Sunny 東比恵店</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%E3%82%B5%E3%83%8B%E3%83%BC%20%E6%9D%B1%E6%AF%94%E6%81%B5%E5%BA%97%20%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8D%9A%E5%A4%9A%E5%8C%BA%E6%9D%B1%E6%AF%94%E6%81%B52%E4%B8%81%E7%9B%AE15-18" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%E3%82%B5%E3%83%8B%E3%83%BC%20%E6%9D%B1%E6%AF%94%E6%81%B5%E5%BA%97%20%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8D%9A%E5%A4%9A%E5%8C%BA%E6%9D%B1%E6%AF%94%E6%81%B52%E4%B8%81%E7%9B%AE15-18&destination=Toyoko%20Inn%20Hakata-guchi%20Ekimae&travelmode=driving" target="_blank" rel="noopener">🚕 計程車 導航</a><span>計程車回飯店</span></div>
+    <div class="stp"><span class="t">回程</span><span class="n">東橫 INN 博多口站前</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Hakata-guchi%20Ekimae" target="_blank" rel="noopener">📍 地圖</a></div>
+  </div>
+  <div class="block" id="rt-d6">
+    <h2>01/03 (日) Day 6 ・ 太宰府 ➔ 賦歸</h2>
+    <div class="stp"><span class="t">10:00</span><span class="n">東橫 INN 博多口站前（退房）</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Hakata-guchi%20Ekimae" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=Toyoko%20Inn%20Hakata-guchi%20Ekimae&destination=%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BA%80%E5%AE%AE&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>地鐵博多 ➔ 天神，轉西鐵福岡(天神)往二日市，再轉太宰府線；約 45 分</span></div>
+    <div class="stp"><span class="t">11:15</span><span class="n">太宰府天滿宮</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BA%80%E5%AE%AE" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BA%80%E5%AE%AE&destination=%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%82%B9%20%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BA%80%E5%AE%AE%E8%A1%A8%E5%8F%82%E9%81%93%E5%BA%97&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>表參道上</span></div>
+    <div class="stp"><span class="t">12:30</span><span class="n">星巴克 太宰府天滿宮表參道店</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%82%B9%20%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BA%80%E5%AE%AE%E8%A1%A8%E5%8F%82%E9%81%93%E5%BA%97" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%82%B9%20%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BA%80%E5%AE%AE%E8%A1%A8%E5%8F%82%E9%81%93%E5%BA%97&destination=FUK%20COFFEE%20%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8D%9A%E5%A4%9A%E5%8C%BA%E7%A5%87%E5%9C%92%E7%94%BA6-22&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>14:30 原路回博多，到祇園（櫛田神社前站）</span></div>
+    <div class="stp"><span class="t">15:30</span><span class="n">FUK COFFEE 祇園</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=FUK%20COFFEE%20%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8D%9A%E5%A4%9A%E5%8C%BA%E7%A5%87%E5%9C%92%E7%94%BA6-22" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=FUK%20COFFEE%20%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8D%9A%E5%A4%9A%E5%8C%BA%E7%A5%87%E5%9C%92%E7%94%BA6-22&destination=%E7%90%A5%E7%8F%80%E9%A4%A8%20%E7%A6%8F%E5%B2%A1%20%E4%B8%8A%E5%B7%9D%E7%AB%AF&travelmode=walking" target="_blank" rel="noopener">🚶 步行 導航</a><span>步行到上川端商店街旁</span></div>
+    <div class="stp"><span class="t">16:15</span><span class="n">琥珀館</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%E7%90%A5%E7%8F%80%E9%A4%A8%20%E7%A6%8F%E5%B2%A1%20%E4%B8%8A%E5%B7%9D%E7%AB%AF" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=%E7%90%A5%E7%8F%80%E9%A4%A8%20%E7%A6%8F%E5%B2%A1%20%E4%B8%8A%E5%B7%9D%E7%AB%AF&destination=Toyoko%20Inn%20Hakata-guchi%20Ekimae&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>回博多站提行李</span></div>
+    <div class="stp"><span class="t">17:15</span><span class="n">東橫 INN 博多口站前（提行李）</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=Toyoko%20Inn%20Hakata-guchi%20Ekimae" target="_blank" rel="noopener">📍 地圖</a></div>
+    <div class="leg"><a class="go" href="https://www.google.com/maps/dir/?api=1&origin=Toyoko%20Inn%20Hakata-guchi%20Ekimae&destination=%E7%A6%8F%E5%B2%A1%E7%A9%BA%E6%B8%AF%20%E5%9B%BD%E9%9A%9B%E7%B7%9A%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB&travelmode=transit" target="_blank" rel="noopener">🚇 大眾運輸 導航</a><span>地鐵空港線 2 站，轉免費接駁巴士到國際航廈；建議 18:00 前抵達</span></div>
+    <div class="stp"><span class="t">18:00</span><span class="n">福岡機場 國際線航廈</span><a class="pin" href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%A9%BA%E6%B8%AF%20%E5%9B%BD%E9%9A%9B%E7%B7%9A%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB" target="_blank" rel="noopener">📍 地圖</a></div>
+  </div>
+</section>
+
 <section id="transport" class="panel">
   <div class="block">
     <h2>🎫 機票・船票・關鍵交通</h2>
@@ -631,13 +862,66 @@
       <tbody>
         <tr><td><strong>華航 CI186 / CI117</strong></td><td>桃園 ➔ 金海 ／ 福岡 ➔ 桃園</td><td>已訂妥</td><td>去程 12/29 15:40 ➔ 18:50；回程 01/03 20:35 ➔ 22:20。</td></tr>
         <tr><td><strong>新山茶花號客輪</strong></td><td>釜山港 ➔ 博多港</td><td><a href="https://www.camellia-line.co.jp" target="_blank" rel="noopener">官方網站</a></td><td>16:30–18:30 於釜山港國際碼頭 3 樓出境大廳換實體票，20:00 前登船，22:30 啟航。</td></tr>
-        <tr><td><strong>JR 音速號特急</strong></td><td>博多站 ➔ 八幡站</td><td><a href="https://www.jrkyushu.co.jp/" target="_blank" rel="noopener">JR 九州</a> 或售票機</td><td>約 35 分鐘，可刷 IC 卡搭自由席。</td></tr>
-        <tr><td><strong>皿倉山纜車</strong></td><td>山麓站 ➔ 山頂</td><td><a href="https://www.sarakurayama-cablecar.co.jp/" target="_blank" rel="noopener">官方網站</a></td><td><strong>11–3 月 10:00–20:00（上山末班 19:20）</strong>；12/31 與 1/1 縮短至 17:00。公休每週二（假日除外）。八幡站前有免費接駁巴士。</td></tr>
+        <tr><td><strong>JR 鹿兒島本線<br>博多 ➔ 八幡</strong></td><td>博多站 ➔ JR 八幡站</td><td>IC 卡刷進刷出，或自動售票機</td><td>搭<strong>快速／普通</strong>用 IC 卡最單純。搭 Sonic 特急自由席要<strong>乘車券＋特急券兩張票</strong>，而且八幡站只有<strong>部分班次</strong>停（<a href="https://jr-group.jp/sonic-stop/" target="_blank" rel="noopener">停車站表</a>、<a href="https://jr-group.jp/sonic-ryokin/" target="_blank" rel="noopener">票價</a>）。</td></tr>
+        <tr><td><strong>皿倉山纜車</strong></td><td>山麓站 ➔ 山頂</td><td><a href="https://www.sarakurayama-cablecar.co.jp/" target="_blank" rel="noopener">官方網站</a>（山麓站購票）</td><td><strong>往返通票 大人 ¥1,230</strong>。11–3 月 10:00–20:00（上山末班 19:20）；12/31、1/1 縮短到 17:00，<strong>1/2 照常</strong>。公休每週二。JR 八幡站有<strong>免費接駁巴士</strong>（約 10 分，週六首班 9:45、山麓站回八幡末班 20:15）。</td></tr>
         <tr><td><strong>荒嶺山計程車</strong></td><td>廣安里／市廳站 ➔ 烽燧臺</td><td>Kakao T App</td><td>直接叫到山頂停車場（₩5,000~6,000），免爬山路。</td></tr>
         <tr><td><strong>福岡地下鐵</strong></td><td>博多站 ➔ 福岡機場</td><td><a href="https://subway.city.fukuoka.lg.jp/cha_trad/" target="_blank" rel="noopener">官網</a></td><td>2 站 5 分鐘，可直接感應 Visa／Mastercard 進站。</td></tr>
       </tbody>
     </table>
     </div>
+  </div>
+
+  <div class="block">
+    <h2>🎫 購票・搭乘教學（一步一步）</h2>
+    <p class="lead">點一下展開。標「未確認」的是我查不到或各來源說法不一的，出發前請自己再看一次。</p>
+
+    <details class="tk"><summary>🚇 釜山：T-money 交通卡</summary><div class="bd"><ol>
+      <li>到 <strong>GS25／CU／7-Eleven</strong> 現金買卡，免註冊（卡費各來源約 ₩3,000，略有出入）。</li>
+      <li>買完餘額是 0，<strong>在櫃檯或機器儲值</strong>，以 ₩1,000 為單位。</li>
+      <li>地鐵、公車、計程車多半都能刷。備案：外國旅客預付卡 <strong>WOWPASS</strong>。</li>
+      <li>金海機場到釜山站：用上面「動線導航」第一個按鈕，Google 會給最新路線。</li>
+    </ol></div></details>
+
+    <details class="tk"><summary>🚕 Kakao T 叫車 ／ 荒嶺山計程車</summary><div class="bd"><ol>
+      <li>App Store／Google Play 搜尋 <strong>Kakao T</strong>，註冊並綁卡。</li>
+      <li><strong>台灣手機與國際信用卡能不能順利註冊綁卡：未確認</strong>，出發前先在台灣試一次。</li>
+      <li>備案：在路邊招手或到計程車排班處，把<strong>韓文地址給司機看</strong>：황령산 봉수대 주차장（荒嶺山）、모퉁이족발 서면본점（西面豬腳）。</li>
+      <li>荒嶺山下車後走平緩木棧道約 10 分鐘到觀景台。</li>
+    </ol></div></details>
+
+    <details class="tk"><summary>⛴️ 新山茶花號（01/01 釜山 ➔ 博多）</summary><div class="bd"><ol>
+      <li>已訂妥。官網：<a href="https://www.camellia-line.co.jp" target="_blank" rel="noopener">camellia-line.co.jp</a>。</li>
+      <li>01/01 <strong>16:30–18:30</strong> 到 <a href="https://www.google.com/maps/search/?api=1&query=%EB%B6%80%EC%82%B0%ED%95%AD%20%EA%B5%AD%EC%A0%9C%EC%97%AC%EA%B0%9D%ED%84%B0%EB%AF%B8%EB%84%90" target="_blank" rel="noopener">釜山港國際客運碼頭</a> 3 樓出境大廳，帶<strong>護照＋訂位確認</strong>換實體票。</li>
+      <li><strong>20:00 前登船</strong>，22:30 啟航，01/02 07:30 抵達博多港。</li>
+      <li>船上可帶酒，<strong>保持未開封</strong>即可上船。</li>
+    </ol></div></details>
+
+    <details class="tk"><summary>🌃 皿倉山：從博多到山頂（01/02 必去）</summary><div class="bd"><ol>
+      <li>博多站搭 <strong>JR 鹿兒島本線往小倉方向到「八幡」</strong>（IC 卡刷進出）。路線與時間用「動線導航」的按鈕看。</li>
+      <li>若搭 Sonic 特急自由席，要<strong>乘車券＋特急券兩張票</strong>，而且八幡站只有部分班次停。<a href="https://jr-group.jp/sonic-stop/" target="_blank" rel="noopener">停車站表</a>。</li>
+      <li>JR 八幡站前搭<strong>免費接駁巴士</strong>到山麓站（約 10 分）。週六首班 9:45，<strong>山麓站回八幡末班 20:15</strong>。</li>
+      <li>山麓站買<strong>纜車＋斜行電梯往返通票，大人 ¥1,230</strong>（官方 FAQ，2026 年 3 月資料）。上山約 10 分。</li>
+      <li>11–3 月營業 10:00–20:00，<strong>上山末班 19:20</strong>。官網：<a href="https://www.sarakurayama-cablecar.co.jp/" target="_blank" rel="noopener">sarakurayama-cablecar.co.jp</a>，首頁有山頂天氣與即時影像。</li>
+    </ol></div></details>
+
+    <details class="tk"><summary>🚃 太宰府（01/03）</summary><div class="bd"><ol>
+      <li>博多站搭地鐵到<strong>天神</strong>（約 5 分），轉 <strong>西鐵福岡（天神）站</strong>。</li>
+      <li>搭西鐵天神大牟田線到<strong>西鐵二日市</strong>（約 14 分），<strong>轉太宰府線</strong>到太宰府（全程約 30 分，票價約 ¥420，單一來源）。</li>
+      <li>太宰府站走路約 4 分鐘到天滿宮；西鐵官網 <a href="https://www.nishitetsu.jp/" target="_blank" rel="noopener">nishitetsu.jp</a>。</li>
+      <li>備案：<strong>太宰府 Liner「旅人」巴士</strong>，博多出發約 ¥800、約 40 分（單一來源，IC 卡可否使用未確認）。</li>
+    </ol></div></details>
+
+    <details class="tk"><summary>🚇 福岡地下鐵 ／ 機場</summary><div class="bd"><ol>
+      <li>博多站 ➔ 福岡機場國內線只要 2 站約 5 分鐘（空港線）。</li>
+      <li>可用 IC 卡（Suica／ICOCA／SUGOCA 等通常通用）或感應信用卡進站。官網：<a href="https://subway.city.fukuoka.lg.jp/cha_trad/" target="_blank" rel="noopener">福岡市地下鐵</a>。</li>
+      <li>國內線轉<strong>免費接駁巴士</strong>到國際航廈。</li>
+    </ol></div></details>
+
+    <details class="tk"><summary>🍶 酒商菅原／☕ FUK COFFEE／📱 外送 App</summary><div class="bd"><ul>
+      <li><strong>酒商菅原</strong>：Google 地圖營業時間<strong>週二至週六 11:00–19:00，週日週一休</strong>；官方 X：<a href="https://x.com/sake_sugawara" target="_blank" rel="noopener">@sake_sugawara</a>。元旦連假可能有特別營業時間，出發前確認。</li>
+      <li><strong>FUK COFFEE 祇園</strong>：<a href="https://tabelog.com/fukuoka/A4001/A400101/40060713/" target="_blank" rel="noopener">食べログ</a>，8:00–20:00 無休，電話 092-281-7300。</li>
+      <li><strong>外送（01/01 僑村）</strong>：App 搜尋 <strong>배달의민족（民族 App）</strong>，出發前在台灣先試註冊到可下單；不行就改 Coupang Eats、Shuttle，或自己去店裡外帶。</li>
+    </ul></div></details>
   </div>
 </section>
 
@@ -653,14 +937,20 @@
         <p><strong>款式已選定</strong>，進去試尺寸、結帳走人。博多站筑紫口旁，整面 On / Hoka 展示牆。記得帶護照辦免稅（滿 ¥5,000）。</p>
       </div>
       <div class="mini">
-        <h4>01/02 23:30 ・ 40 分鐘（深夜一次解決）</h4>
-        <div class="nm">ドン・キホーテ 中洲店</div>
-        <p>中洲屋台走回飯店順路，深夜還開著。<strong>零食、香菸</strong>一次買齊（滿 ¥5,000 帶護照免稅），店內也有<strong>馬油（ソンバーユ）</strong>與洗面乳 — 藥妝需求同一間解決。買完回房直接裝箱，<strong>隔天退房前就打包完畢</strong>。</p>
+        <h4>01/02 23:30 ・ 日本補貨</h4>
+        <div class="nm">Sunny 東比恵店（主）／ 唐吉訶德中洲店（備）</div>
+        <p>中洲屋台走回飯店順路，深夜還開著。想補的 <strong>零食、香菸</strong>（滿 ¥5,000 帶護照免稅）、<strong>馬油（ソンバーユ）</strong>、洗面乳，有逛到就買，沒買到也不要緊。買完回房裝箱，隔天退房前就打包好。</p>
       </div>
       <div class="mini">
         <h4>12/31 14:30 ・ 20 分鐘</h4>
         <div class="nm"><a href="https://www.visitbusan.net/index.do?menuCd=DOM_000000201001001000&uc_seq=378&lang_cd=ko" target="_blank" rel="noopener">National Geographic 光復旗艦店</a></div>
         <p>南浦站光復路徒步街。<strong>只買一件背心</strong>，試穿結帳退稅，20 分鐘走人。</p>
+      </div>
+      <div class="mini">
+        <h4>伴手禮 ・ 01/01 午後（釜山站一帶）</h4>
+        <div class="nm">복호두（Bokhodu）核桃酥</div>
+        <p>豆沙奶油（팥앙버터）、開心果等口味，貼文說「兩盒根本不夠分」。<strong>只查到北區화명점一間</strong>，釜山站／南浦洞有沒有分店未確認，先在 Naver Map 搜「복호두」。</p>
+        <div class="note">⚠️ 帶回台灣前確認保存期限；沒找到店就買一般 호두과자 攤位的替代。</div>
       </div>
       <div class="mini">
         <h4>已移出行程 ・ 想去再說</h4>
@@ -683,14 +973,15 @@
   </div>
 
   <div class="block">
-    <h2>🍶 日本酒（01/02 19:45・天神）</h2>
+    <h2>🍶 日本酒（01/02 12:45・天神）</h2>
     <p class="lead">只鎖定一間 — 信濃屋型的選品店，有深度、能試，不是觀光土產櫃。</p>
     <div class="cols c2">
       <div class="mini">
-        <h4>唯一一間 ・ 01/02 19:45</h4>
+        <h4>唯一一間 ・ 01/02 12:45</h4>
         <div class="nm"><a href="https://x.com/sake_sugawara" target="_blank" rel="noopener">酒商菅原（天神）</a></div>
-        <p>日本酒・日本威士忌・日本紅酒專門，<strong>附角打ち</strong>可以站著先喝一杯再決定帶哪瓶走。西鐵天神站步行 2 分鐘，從博多站搭地鐵 5 分鐘。<strong>排在 01/02 晚上，因為最後一天不開行李。</strong></p>
-        <div class="note">⚠️ 營業時間以店家公告為準，先看官方 X 當天動態；順便問免稅。</div>
+        <p>日本酒・日本威士忌・日本紅酒專門，<strong>附角打ち</strong>可以站著先喝一杯再決定帶哪瓶走。住址：渡辺通 5-24-30（東カン福岡第一ビル 1F），從博多站搭地鐵到天神 5 分鐘再走過去。</p>
+        <div class="note c">★ <strong>營業 週二至週六 11:00–19:00，週日、週一公休</strong>（Google 地圖）。所以排在 01/02（週六）下午；01/03 週日整天不開。</div>
+        <div class="note">⚠️ 元旦連假可能有特別營業時間，先看官方 X。沒買到也不要緊，<strong>01/03 福岡機場免稅店可補買</strong>。</div>
       </div>
       <div class="mini">
         <h4>買什麼 ・ 福岡在地酒款</h4>
@@ -715,9 +1006,9 @@
         <div class="note">★ 冬季山頂風大極冷，防風大衣必備。</div>
       </div>
       <div class="mini">
-        <div class="nm" style="color:var(--rose)">北九州・皿倉山 ｜ 01/02 16:00【必去】</div>
+        <div class="nm" style="color:var(--rose)">北九州・皿倉山 ｜ 01/02 15:45【必去】</div>
         <p><strong>百億美元夜景</strong>：俯瞰北九州工業港灣與若戶大橋燈火，連續兩屆日本新三大夜景都市第 1 名。</p>
-        <p style="margin-top:6px"><strong>交通</strong>：博多搭 JR 音速號 35 分到八幡站 ➔ 免費接駁巴士 ➔ 軌道纜車＋斜行電梯登頂，零健行。</p>
+        <p style="margin-top:6px"><strong>交通</strong>：博多搭 JR 鹿兒島本線到 JR 八幡站 ➔ 站前免費接駁巴士（約 10 分）➔ 纜車＋斜行電梯上山（約 10 分），零健行。詳細步驟看「購票・交通」分頁。</p>
         <div class="note g">✓ 營業 10:00–20:00（上山末班 19:20），1/2 照常運行，不受元旦特別時間影響。</div>
       </div>
     </div>
@@ -761,6 +1052,17 @@
       window.scrollTo({top:0, behavior:'smooth'});
     });
   });
+
+  // jump to route panel for a day
+  function showRoute(day){
+    document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('on'); });
+    document.querySelectorAll('.nav button').forEach(function(x){ x.classList.remove('on'); });
+    document.getElementById('route').classList.add('on');
+    var nb = document.querySelector('.nav button[data-tab="route"]');
+    if (nb) nb.classList.add('on');
+    var el = document.getElementById('rt-' + day);
+    if (el) el.scrollIntoView({behavior:'auto', block:'start'});
+  }
 
   // option swap
   function swap(g){
